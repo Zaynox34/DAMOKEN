@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MT_Bush_01
+  m_Name: MT_Leaves_03
   m_Shader: {fileID: -6465566751694194690, guid: d3452ac3238beae4cb2c107a804a1b30, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,7 +33,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - AlphaMask:
-        m_Texture: {fileID: 2800000, guid: 236535715ba609347ad1d5e1efc4c22c, type: 3}
+        m_Texture: {fileID: 2800000, guid: b36a6bd003cd70748aaf146e75587019, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -121,7 +121,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - BadeColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 0}
+    - BadeColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
     - _1: {r: 1, g: 1, b: 1, a: 0}
     - _2: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

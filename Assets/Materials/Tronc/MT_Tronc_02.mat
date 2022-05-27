@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MT_Tronc1
+  m_Name: MT_Tronc_02
   m_Shader: {fileID: -6465566751694194690, guid: ca737c12c488513418d6a182d8c516c7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,7 +33,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - AlphaMask:
-        m_Texture: {fileID: 2800000, guid: a08e03f69b6f92341a9d68b2af39aa91, type: 3}
+        m_Texture: {fileID: 2800000, guid: e87e1cd86ec5d5745babeb8f5709825b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:

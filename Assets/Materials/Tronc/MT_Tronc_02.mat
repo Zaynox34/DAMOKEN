@@ -123,7 +123,7 @@ Material:
     m_Colors:
     - BadeColor: {r: 0, g: 0, b: 0, a: 0}
     - BaseColorBG: {r: 0.3962264, g: 0.2462798, b: 0.17755428, a: 1}
-    - BaseColorFront: {r: 0.09019608, g: 0.039215688, b: 0.015686275, a: 1}
+    - BaseColorFront: {r: 0.12156863, g: 0.14445724, b: 0.14901961, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

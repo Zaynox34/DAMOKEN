@@ -121,7 +121,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - BadeColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
+    - BadeColor: {r: 0.7830189, g: 0.41736382, b: 0.41736382, a: 0}
     - _1: {r: 1, g: 1, b: 1, a: 0}
     - _2: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

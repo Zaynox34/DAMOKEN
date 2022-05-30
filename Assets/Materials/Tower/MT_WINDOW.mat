@@ -122,8 +122,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - BaseColor: {r: 0.058823533, g: 0.24313727, b: 0.25882354, a: 0}
-    - BaseColorBG: {r: 0.13725491, g: 0.3647059, b: 0.3882353, a: 0}
-    - BaseColorFront: {r: 0.058823533, g: 0.24313727, b: 0.25882354, a: 0}
+    - BaseColorBG: {r: 0.09803919, g: 0.38039216, b: 0.4, a: 1}
+    - BaseColorFront: {r: 0.05882353, g: 0.24313726, b: 0.25882354, a: 0}
     - FenetreColor: {r: 0.121568635, g: 0.454902, b: 0.48627454, a: 0}
     - FenetreColorBG: {r: 0.30588236, g: 0.53333336, b: 0.5529412, a: 1}
     - FenetreColorFront: {r: 0.121568635, g: 0.454902, b: 0.48627454, a: 0}

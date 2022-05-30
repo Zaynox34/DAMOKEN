@@ -94,6 +94,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - OffsetRandom: 0.1
+    - WindScale: 1
+    - WindSpeed: 1
+    - WindStrengh: 0.3
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -122,6 +126,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - BadeColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 0}
+    - Wind_Direction: {r: 1, g: 0, b: 0, a: 0}
     - _1: {r: 1, g: 1, b: 1, a: 0}
     - _2: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}

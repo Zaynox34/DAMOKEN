@@ -19,47 +19,88 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""id"": ""0f2597a3-dbd1-4165-b337-12af10b28cb9"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Walk"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""58a33845-a0f5-47d3-b861-d292fed4dc12"",
-                    ""expectedControlType"": """",
+                    ""id"": ""9bb6f171-2014-4546-8986-b663b91aa237"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Slash0"",
+                    ""type"": ""Button"",
+                    ""id"": ""e52a5759-a02d-42c5-b578-74fb5f6c6032"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Move"",
-                    ""id"": ""c9cab84d-8038-4d4b-8fdf-26598ab32e62"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""WASD"",
+                    ""id"": ""5474fba4-6dea-48c8-8d2d-04af02b4115f"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Walk"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""4073e17a-a3ed-4304-b034-97f4897c8bc7"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": ""up"",
+                    ""id"": ""c820c1a3-9406-42e7-84ff-5b7e0bc91c6d"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""217a91e1-f8b1-4aec-a298-91b6d22ed0a5"",
+                    ""name"": ""down"",
+                    ""id"": ""4403fe40-acec-4de9-9b8b-da773675d42a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0ac5be10-ee3c-4c74-9799-66457d2cbfae"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2528323e-6f87-4bd9-b771-ac6f24a38aab"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3c4e030-3552-467e-a0b8-5076ca748df7"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slash0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -68,7 +109,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
 }");
         // War
         m_War = asset.FindActionMap("War", throwIfNotFound: true);
-        m_War_Move = m_War.FindAction("Move", throwIfNotFound: true);
+        m_War_Walk = m_War.FindAction("Walk", throwIfNotFound: true);
+        m_War_Slash0 = m_War.FindAction("Slash0", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -118,12 +160,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     // War
     private readonly InputActionMap m_War;
     private IWarActions m_WarActionsCallbackInterface;
-    private readonly InputAction m_War_Move;
+    private readonly InputAction m_War_Walk;
+    private readonly InputAction m_War_Slash0;
     public struct WarActions
     {
         private @PlayerControls m_Wrapper;
         public WarActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_War_Move;
+        public InputAction @Walk => m_Wrapper.m_War_Walk;
+        public InputAction @Slash0 => m_Wrapper.m_War_Slash0;
         public InputActionMap Get() { return m_Wrapper.m_War; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -133,22 +177,29 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_WarActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_WarActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnMove;
+                @Walk.started -= m_Wrapper.m_WarActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnWalk;
+                @Slash0.started -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash0;
+                @Slash0.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash0;
+                @Slash0.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash0;
             }
             m_Wrapper.m_WarActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
+                @Slash0.started += instance.OnSlash0;
+                @Slash0.performed += instance.OnSlash0;
+                @Slash0.canceled += instance.OnSlash0;
             }
         }
     }
     public WarActions @War => new WarActions(this);
     public interface IWarActions
     {
-        void OnMove(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
+        void OnSlash0(InputAction.CallbackContext context);
     }
 }

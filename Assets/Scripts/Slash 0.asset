@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80df71d1fbce3954ea709b75faa8f84d, type: 3}
+  m_Name: Slash 0
+  m_EditorClassIdentifier: 
+  <skillRange>k__BackingField: 10
+  <skillStartupTime>k__BackingField: 10
+  <skillActiveTime>k__BackingField: 10
+  <skillRecoveryTime>k__BackingField: 10
+  attackSound: {fileID: 0}
+  <attackDamage>k__BackingField: 100
+  <skillOnBlockTime>k__BackingField: 10

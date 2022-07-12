@@ -26,7 +26,7 @@ public class Walk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float move = playerControls.War.Move.ReadValue<float>();
-        transform.position += new Vector3(move * speed, 0, 0) * Time.deltaTime;
+        //float move = playerControls.War.Move.ReadValue<float>();
+        //transform.position += new Vector3(move * speed, 0, 0) * Time.deltaTime;
     }
 }

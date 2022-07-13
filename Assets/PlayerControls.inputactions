@@ -20,6 +20,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Slash1",
+                    "type": "Button",
+                    "id": "3f99675c-dced-4c1c-b7e0-592a25a000f6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Slash2",
+                    "type": "Button",
+                    "id": "bcac689f-c114-4dbb-9a66-1fb4abb09a33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -81,11 +97,33 @@
                 {
                     "name": "",
                     "id": "f3c4e030-3552-467e-a0b8-5076ca748df7",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Slash0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "763883f3-7a93-44b3-9685-ffe3dc4b2b4f",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slash1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72416635-9907-4ea5-9f30-b133be0bbd0b",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slash2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -33,6 +33,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Slash1"",
+                    ""type"": ""Button"",
+                    ""id"": ""3f99675c-dced-4c1c-b7e0-592a25a000f6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Slash2"",
+                    ""type"": ""Button"",
+                    ""id"": ""bcac689f-c114-4dbb-9a66-1fb4abb09a33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -94,11 +110,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f3c4e030-3552-467e-a0b8-5076ca748df7"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Slash0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""763883f3-7a93-44b3-9685-ffe3dc4b2b4f"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slash1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72416635-9907-4ea5-9f30-b133be0bbd0b"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Slash2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -111,6 +149,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_War = asset.FindActionMap("War", throwIfNotFound: true);
         m_War_Walk = m_War.FindAction("Walk", throwIfNotFound: true);
         m_War_Slash0 = m_War.FindAction("Slash0", throwIfNotFound: true);
+        m_War_Slash1 = m_War.FindAction("Slash1", throwIfNotFound: true);
+        m_War_Slash2 = m_War.FindAction("Slash2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -162,12 +202,16 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IWarActions m_WarActionsCallbackInterface;
     private readonly InputAction m_War_Walk;
     private readonly InputAction m_War_Slash0;
+    private readonly InputAction m_War_Slash1;
+    private readonly InputAction m_War_Slash2;
     public struct WarActions
     {
         private @PlayerControls m_Wrapper;
         public WarActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walk => m_Wrapper.m_War_Walk;
         public InputAction @Slash0 => m_Wrapper.m_War_Slash0;
+        public InputAction @Slash1 => m_Wrapper.m_War_Slash1;
+        public InputAction @Slash2 => m_Wrapper.m_War_Slash2;
         public InputActionMap Get() { return m_Wrapper.m_War; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -183,6 +227,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Slash0.started -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash0;
                 @Slash0.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash0;
                 @Slash0.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash0;
+                @Slash1.started -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash1;
+                @Slash1.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash1;
+                @Slash1.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash1;
+                @Slash2.started -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash2;
+                @Slash2.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash2;
+                @Slash2.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash2;
             }
             m_Wrapper.m_WarActionsCallbackInterface = instance;
             if (instance != null)
@@ -193,6 +243,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Slash0.started += instance.OnSlash0;
                 @Slash0.performed += instance.OnSlash0;
                 @Slash0.canceled += instance.OnSlash0;
+                @Slash1.started += instance.OnSlash1;
+                @Slash1.performed += instance.OnSlash1;
+                @Slash1.canceled += instance.OnSlash1;
+                @Slash2.started += instance.OnSlash2;
+                @Slash2.performed += instance.OnSlash2;
+                @Slash2.canceled += instance.OnSlash2;
             }
         }
     }
@@ -201,5 +257,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnWalk(InputAction.CallbackContext context);
         void OnSlash0(InputAction.CallbackContext context);
+        void OnSlash1(InputAction.CallbackContext context);
+        void OnSlash2(InputAction.CallbackContext context);
     }
 }

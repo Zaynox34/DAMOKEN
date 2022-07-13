@@ -10,29 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80df71d1fbce3954ea709b75faa8f84d, type: 3}
-  m_Name: Slash 0
+  m_Name: Slash 1
   m_EditorClassIdentifier: 
-  <skillRange>k__BackingField: 2.75
+  <skillRange>k__BackingField: 0.5
   <skillStartupTime>k__BackingField: 19
   <skillActiveTime>k__BackingField: 4
   <skillRecoveryTime>k__BackingField: 42
   compressProportionPerFrame:
   - 9
-  - 0.1
+  - 0.5
   - 20
-  - 0.55
-  - 21
-  - 0.39
-  - 22
-  - 0.05
+  - 0.5
   proportionPerFrame:
-  - 0.1
+  - 0.5
   - 0
-  - 0.55
+  - 0.5
   - 0
-  - 0.39
   - 0
-  - 0.05
+  - 0
+  - 0
   - 0
   - 0
   - 0

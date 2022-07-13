@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "SkillScriptableObject", menuName = "ScriptableObjects/Skill")]
 public class SkillScriptableObject : ScriptableObject
@@ -14,6 +16,10 @@ public class SkillScriptableObject : ScriptableObject
     [field: SerializeField]
     public int skillRecoveryTime { get; private set; } = 10;
 
+    [field: SerializeField]
+    public List<float> compressProportionPerFrame;
+    [field: SerializeField]
+    public List<float> proportionPerFrame;
     public AudioClip attackSound;
     public int TotalSkillTime()
     {
@@ -21,7 +27,7 @@ public class SkillScriptableObject : ScriptableObject
     }
     public State StatusOfSkill(int frame)
     {
-        if (frame <= 0)
+        if (frame < 0)
         {
             return State.Idle;
         }
@@ -49,6 +55,18 @@ public class SkillScriptableObject : ScriptableObject
                     }
                 }
             }
+        }
+    }
+    public void UncompressProportionPerFrame()
+    {
+        proportionPerFrame = new List<float>();
+        for (int i = 0; i < TotalSkillTime(); i++)
+        {
+            proportionPerFrame.Add(0);
+        }
+        for (int i = 0; i < compressProportionPerFrame.Count; i += 2)
+        {
+            proportionPerFrame[i] = compressProportionPerFrame[i + 1];
         }
     }
 }

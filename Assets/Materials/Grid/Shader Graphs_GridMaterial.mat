@@ -35,8 +35,8 @@ Material:
     m_Floats:
     - Line_Thinckness: 0.927
     - Line_Thinckness2: 0.966
-    - TileAmount: 25
-    - TileAmount2: 50
+    - TileAmount: 65
+    - TileAmount2: 130
     m_Colors:
     - Color2: {r: 0.7924528, g: 0.48469973, b: 0, a: 0}
     - ColorBG: {r: 0, g: 0, b: 0, a: 0}

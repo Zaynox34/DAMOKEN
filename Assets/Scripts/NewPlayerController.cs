@@ -23,6 +23,9 @@ public class NewPlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 startSkillPosition;
 
+    public Collider[] colliders;
+    public Vector3 boxSize;
+    public LayerMask colisionLayerMask;
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -82,10 +85,28 @@ public class NewPlayerController : MonoBehaviour
             startSkillPosition = transform.position;
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+        Gizmos.DrawCube(Vector3.zero, new Vector3(boxSize.x * 2, boxSize.y * 2, boxSize.z * 2)); // Because size is halfExtents
+    }
 
     // Update is called once per frame
     void Update()
     {
+        colliders = Physics.OverlapBox(transform.position, boxSize, transform.rotation,colisionLayerMask) ;
+        //OnDrawGizmos();
+
+        if (colliders.Length > 0)
+        {
+           foreach(Collider colid in colliders)
+            {
+                Debug.Log(colid);
+            }
+            Debug.Log("We hit something");
+        }
+
         Vector2 moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)
         {

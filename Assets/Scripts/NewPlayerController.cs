@@ -14,18 +14,23 @@ public class NewPlayerController : MonoBehaviour
     private InputAction slash1Action;
     private InputAction slash2Action;
     [SerializeField]
-    private string skillUse;
+    public string skillUse;
+    [SerializeField ]
+    private SkillScriptableObject skillScriptUse;
     [SerializeField]
     private int counterFrame;
     //public GameObject template;
-    private Animator animator;
+    //private Animator animator;
 
     [SerializeField]
     private Vector3 startSkillPosition;
 
-    public Collider[] colliders;
-    public Vector3 boxSize;
-    public LayerMask colisionLayerMask;
+    [SerializeField]
+    private HitboxController hitboxController;
+
+    //public Collider[] colliders;
+    //public Vector3 boxSize;
+    //public LayerMask colisionLayerMask;
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -49,8 +54,18 @@ public class NewPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         skillUse = "None";
         counterFrame = -1;
+        ColidBox a= new ColidBox(Vector3.zero,Vector3.one);
+        List<ColidBox> test = new List<ColidBox>();
+        test.Add(a);
+        List<List<ColidBox>> testt= new List<List<ColidBox>>();
+        testt.Add(test);
+        playerScriptableObject.slash0.hitboxColider=testt;
+        playerScriptableObject.slash1.hitboxColider = testt;
+        playerScriptableObject.slash2.hitboxColider = testt;
+
         playerScriptableObject.slash0.UncompressProportionPerFrame();
         playerScriptableObject.slash1.UncompressProportionPerFrame();
         playerScriptableObject.slash2.UncompressProportionPerFrame();
@@ -85,92 +100,75 @@ public class NewPlayerController : MonoBehaviour
             startSkillPosition = transform.position;
         }
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
-        Gizmos.DrawCube(Vector3.zero, new Vector3(boxSize.x * 2, boxSize.y * 2, boxSize.z * 2)); // Because size is halfExtents
-    }
 
     // Update is called once per frame
     void Update()
     {
-        colliders = Physics.OverlapBox(transform.position, boxSize, transform.rotation,colisionLayerMask) ;
-        //OnDrawGizmos();
-
-        if (colliders.Length > 0)
-        {
-           foreach(Collider colid in colliders)
-            {
-                Debug.Log(colid);
-            }
-            Debug.Log("We hit something");
-        }
-
+      
         Vector2 moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)
         {
             Walk(moveInput);
         }
+        SwitchSkill();
         CounterFrame();
+    }
+    private void SwitchSkill()
+    {
+        switch (skillUse)
+        {
+            case "None":
+                {
+                    skillScriptUse = null;
+                    hitboxController.attackScriptUse = null;
+                    break;
+                }
+            case "Slash0":
+                {
+                    skillScriptUse = playerScriptableObject.slash0;
+                    hitboxController.attackScriptUse=playerScriptableObject.slash0;
+                    hitboxController.startCheckingCollision();
+                    break;
+                }
+            case "Slash1":
+                {
+                    skillScriptUse = playerScriptableObject.slash1;
+                    hitboxController.attackScriptUse = playerScriptableObject.slash1;
+                    hitboxController.startCheckingCollision();
+                    break;
+                }
+            case "Slash2":
+                {
+                    skillScriptUse = playerScriptableObject.slash2;
+                    hitboxController.attackScriptUse = playerScriptableObject.slash2;
+                    hitboxController.startCheckingCollision();
+                    break;
+                }
+            default:
+                break;
+        }
     }
     public void CounterFrame()
     {
-        if (skillUse == "Slash0")
+        if (skillUse != "None")
         {
-
-            if (playerScriptableObject.slash0.TotalSkillTime() - 1 <= counterFrame)
+            if (skillScriptUse.TotalSkillTime() - 1 <= counterFrame)
             {
+                hitboxController.stopCheckingCollision();
                 skillUse = "None";
                 startSkillPosition = Vector3.zero;
                 counterFrame = -1;
             }
+
             else
             {
                 counterFrame++;
 
-                startSkillPosition.x += playerScriptableObject.slash0.proportionPerFrame[counterFrame] * playerScriptableObject.slash0.skillRange;
+                startSkillPosition.x += skillScriptUse.proportionPerFrame[counterFrame] * skillScriptUse.skillRange;
                 transform.position = startSkillPosition;
-                playerState = playerScriptableObject.slash0.StatusOfSkill(counterFrame);
-            }
-
-        }
-
-        if (skillUse == "Slash1")
-        {
-            if (playerScriptableObject.slash1.TotalSkillTime() - 1 <= counterFrame)
-            {
-                skillUse = "None";
-                startSkillPosition = Vector3.zero;
-                counterFrame = -1;
-            }
-            else
-            {
-                counterFrame++;
-                startSkillPosition.x += playerScriptableObject.slash1.proportionPerFrame[counterFrame] * playerScriptableObject.slash1.skillRange;
-                transform.position = startSkillPosition;
-                playerState = playerScriptableObject.slash1.StatusOfSkill(counterFrame);
+                playerState = skillScriptUse.StatusOfSkill(counterFrame);
             }
         }
-        if (skillUse == "Slash2")
-        {
-            Debug.Log(counterFrame + "      " + (playerScriptableObject.slash2.TotalSkillTime() - 1) + "      " + (playerScriptableObject.slash2.TotalSkillTime() - 1 < counterFrame));
-            if (playerScriptableObject.slash2.TotalSkillTime() - 1 <= counterFrame)
-            {
-                skillUse = "None";
-                startSkillPosition = Vector3.zero;
-                counterFrame = -1;
-            }
-            else
-            {
-                counterFrame++;
-                Debug.Log(counterFrame + "   " + playerScriptableObject.slash2.StatusOfSkill(counterFrame) + " zzzzz  " + playerScriptableObject.slash2.TotalSkillTime());
-                startSkillPosition.x += playerScriptableObject.slash2.proportionPerFrame[counterFrame] * playerScriptableObject.slash2.skillRange;
-                transform.position = startSkillPosition;
-                playerState = playerScriptableObject.slash2.StatusOfSkill(counterFrame);
-            }
-        }
-
     }
     public void Walk(Vector2 moveInput)
     {

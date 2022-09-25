@@ -20,6 +20,11 @@ public class SkillScriptableObject : ScriptableObject
     public List<float> compressProportionPerFrame;
     [field: SerializeField]
     public List<float> proportionPerFrame;
+    
+    [field: SerializeField]
+    public List<List<ColidBox>> hurtboxColider;
+    [field: SerializeField]
+    public List<List<ColidBox>> pushboxColider;
     public AudioClip attackSound;
     public int TotalSkillTime()
     {
@@ -51,7 +56,7 @@ public class SkillScriptableObject : ScriptableObject
                     }
                     else
                     {
-                        return State.Idle;
+                        return State.Idle;///????
                     }
                 }
             }

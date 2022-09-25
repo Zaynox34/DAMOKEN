@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string skillUse;
     [SerializeField]
+    private SkillScriptableObject skillScriptUse;
+
+
+    [SerializeField]
     private int counterFrame;
     public GameObject template;
     private Animator animator;
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 startSkillPosition;
 
+    
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -97,8 +102,8 @@ public class PlayerController : MonoBehaviour
     {
         if (skillUse == "Slash0")
         {
-            
-            if (playerScriptableObject.slash0.TotalSkillTime()-1 <= counterFrame)
+
+            if (playerScriptableObject.slash0.TotalSkillTime() - 1 <= counterFrame)
             {
                 skillUse = "None";
                 startSkillPosition = Vector3.zero;
@@ -107,16 +112,16 @@ public class PlayerController : MonoBehaviour
             else
             {
                 counterFrame++;
-                
+
                 startSkillPosition.x += playerScriptableObject.slash0.proportionPerFrame[counterFrame] * playerScriptableObject.slash0.skillRange;
                 transform.position = startSkillPosition;
                 playerState = playerScriptableObject.slash0.StatusOfSkill(counterFrame);
             }
-                
+
         }
-        
+
         if (skillUse == "Slash1")
-        {    
+        {
             if (playerScriptableObject.slash1.TotalSkillTime() - 1 <= counterFrame)
             {
                 skillUse = "None";
@@ -149,7 +154,6 @@ public class PlayerController : MonoBehaviour
                 playerState = playerScriptableObject.slash2.StatusOfSkill(counterFrame);
             }
         }
-
     }
     public void Walk(Vector2 moveInput)
     {

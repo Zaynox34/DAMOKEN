@@ -8,9 +8,15 @@ public class HitboxController : MonoBehaviour
     public LayerMask mask;
     public Color inactiveColor;
     public Color collisionOpenColor;
-    public Color collidingColor;
-    public Collider[] colliders;
-    private List<ColidBox> colideBoxToCheck;
+    public GameObject hitboxPrefab;
+    public GameObject hitBoxDisplay;
+    public Material hitboxMatDisplay;
+    public Material hitboxInnactiveMat;
+    public Material hitboxActiveMat;
+    public Material hitboxHitMat;
+    //public Color collidingColor;
+    public int collidersCount;
+    public List<Transform> colideBoxToCheck;
     [SerializeField]
     private ColliderState _state;
     public bool peutVoir;
@@ -20,13 +26,13 @@ public class HitboxController : MonoBehaviour
         switch (_state)
         {
             case ColliderState.Closed:
-                Gizmos.color = inactiveColor;
+                hitboxMatDisplay = hitboxInnactiveMat;
                 break;
             case ColliderState.Open:
-                Gizmos.color = collisionOpenColor;
+                hitboxMatDisplay = hitboxActiveMat;
                 break;
             case ColliderState.Colliding:
-                Gizmos.color = collidingColor;
+                hitboxMatDisplay = hitboxHitMat;
                 break;
         }
     }
@@ -34,6 +40,7 @@ public class HitboxController : MonoBehaviour
     {
         peutVoir = false;
     }
+    /*
     private void OnDrawGizmos()
     {
         if (peutVoir)
@@ -47,11 +54,11 @@ public class HitboxController : MonoBehaviour
             }
         }
     }
-        
+   */     
     public void startCheckingCollision()
     {
         peutVoir = true;
-        colideBoxToCheck = attackScriptUse.hitboxColider[0];
+        
         _state = ColliderState.Open;
     }
 
@@ -62,25 +69,39 @@ public class HitboxController : MonoBehaviour
     }
     public void hitboxUpdate()
     {
-        checkGizmoColor();       
+        checkGizmoColor();
+
         /*
         foreach (List<ColidBox>l in attackScriptUse.hitboxColider)
         {
             colideBoxToCheck = l;
         }
         */
-        for (int i = 0; (colliders.Length <= 0) && (i < colideBoxToCheck.Count); i++)
-        {            
-            Physics.OverlapBox(colideBoxToCheck[i].center, colideBoxToCheck[i].boxSize, transform.rotation, mask);
+
+        collidersCount = 0;
+        for (int i = 0; i < hitBoxDisplay.transform.childCount; i++)
+        {
+            Destroy(hitBoxDisplay.transform.GetChild(i).gameObject);
         }
-       
-        if (colliders.Length > 0)
+        for (int i = 0; /*(colliders.Length <= 0) &&*/ (i < colideBoxToCheck.Count); i++)
+        {
+            Debug.Log("z");
+            collidersCount+=Physics.OverlapBox(colideBoxToCheck[i].transform.position+transform.position, colideBoxToCheck[i].transform.localScale/2, colideBoxToCheck[i].transform.rotation, mask).Length;
+            GameObject tmp = Instantiate(hitboxPrefab);
+            tmp.transform.position = colideBoxToCheck[i].transform.position + transform.position;
+            tmp.transform.localScale = colideBoxToCheck[i].transform.localScale;
+            tmp.transform.parent = hitBoxDisplay.transform;
+            if (collidersCount > 0)
+            {
+                tmp.GetComponent<MeshRenderer>().material = hitboxMatDisplay;
+            }
+
+        }
+        Debug.Log("a");
+
+        if (collidersCount > 0)
         {
             _state = ColliderState.Colliding;
-            foreach (Collider colid in colliders)
-            {
-                Debug.Log(colid);
-            }
             Debug.Log("We hit something");
         }
 
@@ -89,11 +110,27 @@ public class HitboxController : MonoBehaviour
             _state = ColliderState.Open;
         }
         
-        _state = colliders.Length > 0 ? ColliderState.Colliding : ColliderState.Open;
+        _state = collidersCount > 0 ? ColliderState.Colliding : ColliderState.Open;
+      
+    }
+    public void Start()
+    {
+        colideBoxToCheck = new List<Transform>();
+        GameObject test = new GameObject();
+        test.transform.position = Vector3.zero;
+        test.transform.localScale = Vector3.one;  
+        colideBoxToCheck.Add(test.transform);
+        
+        GameObject test2 = new GameObject();
+        test2.transform.position = new Vector3(0,2,0);
+        test2.transform.localScale = Vector3.one;
+        colideBoxToCheck.Add(test2.transform);
+        
+
     }
     private void Update()
     {
-        if (_state == ColliderState.Open)
+        if (_state != ColliderState.Closed)
         {
             hitboxUpdate();
         }

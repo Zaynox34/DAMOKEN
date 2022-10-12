@@ -27,7 +27,6 @@ public class NewPlayerController : MonoBehaviour
 
     [SerializeField]
     private HitboxController hitboxController;
-
     //public Collider[] colliders;
     //public Vector3 boxSize;
     //public LayerMask colisionLayerMask;
@@ -57,15 +56,6 @@ public class NewPlayerController : MonoBehaviour
 
         skillUse = "None";
         counterFrame = -1;
-        ColidBox a= new ColidBox(Vector3.zero,Vector3.one);
-        List<ColidBox> test = new List<ColidBox>();
-        test.Add(a);
-        List<List<ColidBox>> testt= new List<List<ColidBox>>();
-        testt.Add(test);
-        playerScriptableObject.slash0.hitboxColider=testt;
-        playerScriptableObject.slash1.hitboxColider = testt;
-        playerScriptableObject.slash2.hitboxColider = testt;
-
         playerScriptableObject.slash0.UncompressProportionPerFrame();
         playerScriptableObject.slash1.UncompressProportionPerFrame();
         playerScriptableObject.slash2.UncompressProportionPerFrame();

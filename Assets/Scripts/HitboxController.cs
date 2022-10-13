@@ -14,14 +14,13 @@ public class HitboxController : MonoBehaviour
     public Material hitboxInnactiveMat;
     public Material hitboxActiveMat;
     public Material hitboxHitMat;
-    //public Color collidingColor;
     public int collidersCount;
     public List<Transform> colideBoxToCheck;
     [SerializeField]
     private ColliderState _state;
     public bool peutVoir;
 
-    private void checkGizmoColor()
+    private void CheckGizmoColor()
     {
         switch (_state)
         {
@@ -38,78 +37,56 @@ public class HitboxController : MonoBehaviour
     }
     private void Awake()
     {
-        peutVoir = false;
     }
-    /*
-    private void OnDrawGizmos()
+    public void StartCheckingCollision()
     {
-        if (peutVoir)
-        {
-            Debug.Log("aaaa");
-            checkGizmoColor();
-            foreach (ColidBox c in colideBoxToCheck)
-            {
-                Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
-                Gizmos.DrawCube(c.center, new Vector3(c.boxSize.x * 2, c.boxSize.y * 2, c.boxSize.z * 2)); // Because size is halfExtents
-            }
-        }
-    }
-   */     
-    public void startCheckingCollision()
-    {
-        peutVoir = true;
-        
         _state = ColliderState.Open;
     }
 
-    public void stopCheckingCollision()
+    public void StopCheckingCollision()
     {
-        peutVoir = false;
         _state = ColliderState.Closed;
     }
-    public void hitboxUpdate()
+    public void ResetHitbox()
     {
-        checkGizmoColor();
-
-        /*
-        foreach (List<ColidBox>l in attackScriptUse.hitboxColider)
-        {
-            colideBoxToCheck = l;
-        }
-        */
-
         collidersCount = 0;
         for (int i = 0; i < hitBoxDisplay.transform.childCount; i++)
         {
             Destroy(hitBoxDisplay.transform.GetChild(i).gameObject);
         }
-        for (int i = 0; /*(colliders.Length <= 0) &&*/ (i < colideBoxToCheck.Count); i++)
-        {
-            Debug.Log("z");
-            collidersCount+=Physics.OverlapBox(colideBoxToCheck[i].transform.position+transform.position, colideBoxToCheck[i].transform.localScale/2, colideBoxToCheck[i].transform.rotation, mask).Length;
-            GameObject tmp = Instantiate(hitboxPrefab);
-            tmp.transform.position = colideBoxToCheck[i].transform.position + transform.position;
-            tmp.transform.localScale = colideBoxToCheck[i].transform.localScale;
-            tmp.transform.parent = hitBoxDisplay.transform;
-            if (collidersCount > 0)
-            {
-                tmp.GetComponent<MeshRenderer>().material = hitboxMatDisplay;
-            }
-
-        }
-        Debug.Log("a");
-
+    }
+    public GameObject CreateHitBox(Vector3 position,Vector3 scale,Transform parent)
+    {
+        GameObject gameObject = Instantiate(hitboxPrefab);
+        gameObject.transform.position = position;
+        gameObject.transform.localScale = scale;
+        gameObject.transform.parent = parent;
+        return gameObject;
+    }
+    public void DisplayHitbox(Transform hitBoxTransform)
+    {
+        GameObject tmp = CreateHitBox(hitBoxTransform.transform.position + transform.position,
+                hitBoxTransform.transform.localScale, hitBoxDisplay.transform);
         if (collidersCount > 0)
         {
-            _state = ColliderState.Colliding;
-            Debug.Log("We hit something");
-        }
+            tmp.GetComponent<MeshRenderer>().material = hitboxMatDisplay;
 
-        else
-        {
-            _state = ColliderState.Open;
         }
-        
+    }
+    public void HitboxUpdate()
+    {
+        ResetHitbox();
+        CheckGizmoColor();
+        for (int i = 0; /*(colliders.Length <= 0) &&*/ (i < colideBoxToCheck.Count); i++)
+        {
+            collidersCount+=Physics.OverlapBox(colideBoxToCheck[i].transform.position+transform.position,
+                colideBoxToCheck[i].transform.localScale/2,
+                colideBoxToCheck[i].transform.rotation, mask).Length;
+            if(peutVoir)
+            {
+                DisplayHitbox(colideBoxToCheck[i]);
+            }
+        }
         _state = collidersCount > 0 ? ColliderState.Colliding : ColliderState.Open;
       
     }
@@ -132,7 +109,7 @@ public class HitboxController : MonoBehaviour
     {
         if (_state != ColliderState.Closed)
         {
-            hitboxUpdate();
+            HitboxUpdate();
         }
     }
 }

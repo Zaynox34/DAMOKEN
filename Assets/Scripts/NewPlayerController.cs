@@ -53,7 +53,7 @@ public class NewPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        hitboxController.StartCheckingCollision();
         skillUse = "None";
         counterFrame = -1;
         playerScriptableObject.slash0.UncompressProportionPerFrame();
@@ -117,21 +117,21 @@ public class NewPlayerController : MonoBehaviour
                 {
                     skillScriptUse = playerScriptableObject.slash0;
                     hitboxController.attackScriptUse=playerScriptableObject.slash0;
-                    hitboxController.startCheckingCollision();
+                    hitboxController.StartCheckingCollision();
                     break;
                 }
             case "Slash1":
                 {
                     skillScriptUse = playerScriptableObject.slash1;
                     hitboxController.attackScriptUse = playerScriptableObject.slash1;
-                    hitboxController.startCheckingCollision();
+                    hitboxController.StartCheckingCollision();
                     break;
                 }
             case "Slash2":
                 {
                     skillScriptUse = playerScriptableObject.slash2;
                     hitboxController.attackScriptUse = playerScriptableObject.slash2;
-                    hitboxController.startCheckingCollision();
+                    hitboxController.StartCheckingCollision();
                     break;
                 }
             default:
@@ -144,7 +144,7 @@ public class NewPlayerController : MonoBehaviour
         {
             if (skillScriptUse.TotalSkillTime() - 1 <= counterFrame)
             {
-                hitboxController.stopCheckingCollision();
+                hitboxController.StopCheckingCollision();
                 skillUse = "None";
                 startSkillPosition = Vector3.zero;
                 counterFrame = -1;

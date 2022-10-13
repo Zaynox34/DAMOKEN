@@ -1786,6 +1786,7 @@ GameObject:
   - component: {fileID: 263523240}
   - component: {fileID: 263523244}
   - component: {fileID: 263523245}
+  - component: {fileID: 263523246}
   m_Layer: 0
   m_Name: PErso PlaceHolder
   m_TagString: Untagged
@@ -1905,21 +1906,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackScriptUse: {fileID: 0}
+  _state: 0
   mask:
     serializedVersion: 2
     m_Bits: 128
-  inactiveColor: {r: 0, g: 0, b: 0, a: 0}
-  collisionOpenColor: {r: 0, g: 0, b: 0, a: 0}
-  hitboxPrefab: {fileID: 1452022634609169470, guid: c9acb639f395df648810732e7bb8878e, type: 3}
-  hitBoxDisplay: {fileID: 1926269567}
-  hitboxMatDisplay: {fileID: 0}
+  collidersCount: 0
+  peutVoir: 0
   hitboxInnactiveMat: {fileID: 2100000, guid: ba8b273f222bdb443b0a2e1e8e8d47fc, type: 2}
   hitboxActiveMat: {fileID: 2100000, guid: bcae031c4596a3d4486a9b63797abe54, type: 2}
   hitboxHitMat: {fileID: 2100000, guid: ae6350241444d1b4f8e06e4860f59f1e, type: 2}
-  collidersCount: 0
+  hitboxPrefab: {fileID: 1452022634609169470, guid: c9acb639f395df648810732e7bb8878e, type: 3}
+  hitBoxDisplay: {fileID: 1926269567}
   colideBoxToCheck: []
-  _state: 0
-  peutVoir: 0
+--- !u!95 &263523246
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263523239}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1dbcb5af8442b6e4b99f8f3b57044edf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &269745623
 GameObject:
   m_ObjectHideFlags: 0

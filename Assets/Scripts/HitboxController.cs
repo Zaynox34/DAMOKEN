@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class HitboxController : MonoBehaviour
 {
+    [Header("UseInGame")]
     public AttackScriptableObject attackScriptUse;
+    [SerializeField]
+    private ColliderState _state;
     public LayerMask mask;
-    public Color inactiveColor;
-    public Color collisionOpenColor;
-    public GameObject hitboxPrefab;
-    public GameObject hitBoxDisplay;
-    public Material hitboxMatDisplay;
+    public int collidersCount;
+    public bool peutVoir;
+
+    
+    private Material hitboxMatDisplay;
+    [Header("Material")]
     public Material hitboxInnactiveMat;
     public Material hitboxActiveMat;
     public Material hitboxHitMat;
-    public int collidersCount;
+    [Header("GameObject/Prefab")]
+    public GameObject hitboxPrefab;
+    public GameObject hitBoxDisplay;
+    [Header("List")]
     public List<Transform> colideBoxToCheck;
-    [SerializeField]
-    private ColliderState _state;
-    public bool peutVoir;
-
     private void CheckGizmoColor()
     {
         switch (_state)
@@ -34,9 +37,6 @@ public class HitboxController : MonoBehaviour
                 hitboxMatDisplay = hitboxHitMat;
                 break;
         }
-    }
-    private void Awake()
-    {
     }
     public void StartCheckingCollision()
     {
@@ -87,8 +87,7 @@ public class HitboxController : MonoBehaviour
                 DisplayHitbox(colideBoxToCheck[i]);
             }
         }
-        _state = collidersCount > 0 ? ColliderState.Colliding : ColliderState.Open;
-      
+        _state = collidersCount > 0 ? ColliderState.Colliding : ColliderState.Open;   
     }
     public void Start()
     {

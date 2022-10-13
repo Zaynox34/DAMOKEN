@@ -94,7 +94,6 @@ public class NewPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
         Vector2 moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)
         {

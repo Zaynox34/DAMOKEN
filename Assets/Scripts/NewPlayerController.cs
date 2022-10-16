@@ -56,9 +56,11 @@ public class NewPlayerController : MonoBehaviour
         hitboxController.StartCheckingCollision();
         skillUse = "None";
         counterFrame = -1;
+        /*
         playerScriptableObject.slash0.UncompressProportionPerFrame();
         playerScriptableObject.slash1.UncompressProportionPerFrame();
         playerScriptableObject.slash2.UncompressProportionPerFrame();
+        */
     }
     public void Slash0(InputAction.CallbackContext context)
     {
@@ -100,7 +102,7 @@ public class NewPlayerController : MonoBehaviour
             Walk(moveInput);
         }
         SwitchSkill();
-        CounterFrame();
+        //CounterFrame();
     }
     private void SwitchSkill()
     {
@@ -137,6 +139,7 @@ public class NewPlayerController : MonoBehaviour
                 break;
         }
     }
+    /*
     public void CounterFrame()
     {
         if (skillUse != "None")
@@ -152,13 +155,14 @@ public class NewPlayerController : MonoBehaviour
             else
             {
                 counterFrame++;
-
+                
                 startSkillPosition.x += skillScriptUse.proportionPerFrame[counterFrame] * skillScriptUse.skillRange;
                 transform.position = startSkillPosition;
                 playerState = skillScriptUse.StatusOfSkill(counterFrame);
             }
         }
     }
+    */
     public void Walk(Vector2 moveInput)
     {
         transform.position += new Vector3(moveInput.x * playerScriptableObject.speed, 0, 0) * Time.deltaTime;

@@ -17,8 +17,8 @@ MonoBehaviour:
   <skillActiveTime>k__BackingField: 4
   <skillRecoveryTime>k__BackingField: 42
   compressProportionPerFrame:
-  - 9
-  - 0.25
+  - 4
+  - 0.5
   - 20
   - 0.5
   proportionPerFrame:

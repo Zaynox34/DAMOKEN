@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80df71d1fbce3954ea709b75faa8f84d, type: 3}
   m_Name: Slash 2
   m_EditorClassIdentifier: 
-  <skillRange>k__BackingField: 1.25
+  <skillRange>k__BackingField: 1
   <skillStartupTime>k__BackingField: 19
   <skillActiveTime>k__BackingField: 4
   <skillRecoveryTime>k__BackingField: 42
   compressProportionPerFrame:
-  - 9
-  - 0.18
+  - 19
+  - -1
   - 20
   - 0.04
   - 21

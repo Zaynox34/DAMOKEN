@@ -11,7 +11,6 @@ public class HitboxController : MonoBehaviour
     public LayerMask mask;
     public int collidersCount;
     public bool peutVoir;
-
     
     private Material hitboxMatDisplay;
     [Header("Material")]
@@ -19,10 +18,12 @@ public class HitboxController : MonoBehaviour
     public Material hitboxActiveMat;
     public Material hitboxHitMat;
     [Header("GameObject/Prefab")]
+
     public GameObject hitboxPrefab;
     public GameObject hitBoxDisplay;
     [Header("List")]
     public List<Transform> colideBoxToCheck;
+
     private void CheckGizmoColor()
     {
         switch (_state)

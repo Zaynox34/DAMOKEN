@@ -7,29 +7,36 @@ public class SkillScriptableObject : ScriptableObject
 {
     //[field: SerializeField]
     //public Animation animation;
-    [field: SerializeField]
-    public float skillRange { get; private set; } = 10;
+    
+    
+    //[field: SerializeField]
+    //public float skillRange { get; private set; } = 10;
     [field: SerializeField]
     public int skillStartupTime { get; private set; } = 10;
     [field: SerializeField]
     public int skillActiveTime { get; private set; } = 10;
+    
     [field: SerializeField]
     public int skillRecoveryTime { get; private set; } = 10;
+    
 
-    [field: SerializeField]
-    public List<float> compressProportionPerFrame;
-    [field: SerializeField]
-    public List<float> proportionPerFrame;
+    //[field: SerializeField]
+    //public List<float> compressProportionPerFrame;
+    //[field: SerializeField]
+    //public List<float> proportionPerFrame;
+    
     
     [field: SerializeField]
     public List<List<ColidBox>> hurtboxColider;
     [field: SerializeField]
     public List<List<ColidBox>> pushboxColider;
     public AudioClip attackSound;
+    
     public int TotalSkillTime()
     {
         return skillStartupTime + skillActiveTime + skillRecoveryTime;
     }
+    
     public State StatusOfSkill(int frame)
     {
         if (frame < 0)
@@ -62,6 +69,8 @@ public class SkillScriptableObject : ScriptableObject
             }
         }
     }
+    
+    /*
     public void UncompressProportionPerFrame()
     {
         proportionPerFrame = new List<float>();
@@ -73,5 +82,6 @@ public class SkillScriptableObject : ScriptableObject
         {
             proportionPerFrame[i] = compressProportionPerFrame[i + 1];
         }
-    }
+    }*/
+    
 }

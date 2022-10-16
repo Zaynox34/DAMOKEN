@@ -29,10 +29,14 @@ public class AnimationController : MonoBehaviour
         if(currentAnimationName!="T_Idle")
         {
             character.transform.parent = transform;
+            //character.transform.position = new Vector3(transform.position.x, 0.8f, transform.position.z);
         }
         else
         {
             character.transform.parent = player.transform;
+            /////--? ché pas ou mettre la ligne ci dessous
+            character.transform.position = new Vector3(character.transform.position.x, 0.8f, character.transform.position.z);
+            /////----?
         }
     }
     public void PlayAnimation(string name)

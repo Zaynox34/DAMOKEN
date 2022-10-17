@@ -49,6 +49,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""fdb9425b-bbc7-4a00-945a-46c60d814b20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Slash2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eddca77c-cf5d-4222-8dfd-af4996599c4d"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -151,6 +170,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_War_Slash0 = m_War.FindAction("Slash0", throwIfNotFound: true);
         m_War_Slash1 = m_War.FindAction("Slash1", throwIfNotFound: true);
         m_War_Slash2 = m_War.FindAction("Slash2", throwIfNotFound: true);
+        m_War_Dash = m_War.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,6 +224,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_War_Slash0;
     private readonly InputAction m_War_Slash1;
     private readonly InputAction m_War_Slash2;
+    private readonly InputAction m_War_Dash;
     public struct WarActions
     {
         private @PlayerControls m_Wrapper;
@@ -212,6 +233,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Slash0 => m_Wrapper.m_War_Slash0;
         public InputAction @Slash1 => m_Wrapper.m_War_Slash1;
         public InputAction @Slash2 => m_Wrapper.m_War_Slash2;
+        public InputAction @Dash => m_Wrapper.m_War_Dash;
         public InputActionMap Get() { return m_Wrapper.m_War; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +255,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Slash2.started -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash2;
                 @Slash2.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash2;
                 @Slash2.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnSlash2;
+                @Dash.started -= m_Wrapper.m_WarActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_WarActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_WarActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_WarActionsCallbackInterface = instance;
             if (instance != null)
@@ -249,6 +274,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Slash2.started += instance.OnSlash2;
                 @Slash2.performed += instance.OnSlash2;
                 @Slash2.canceled += instance.OnSlash2;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -259,5 +287,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnSlash0(InputAction.CallbackContext context);
         void OnSlash1(InputAction.CallbackContext context);
         void OnSlash2(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

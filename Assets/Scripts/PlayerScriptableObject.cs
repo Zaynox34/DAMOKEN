@@ -11,6 +11,7 @@ public class PlayerScriptableObject : ScriptableObject
     public int health { get; private set; } = 100;
     [field: SerializeField]
     public float speed { get; private set; } = 10;
+
     [field: SerializeField]
     public SkillScriptableObject start;
     [field: SerializeField]

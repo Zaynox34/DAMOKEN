@@ -15,6 +15,7 @@ public class AnimatorController : MonoBehaviour
     private AnimationController characterAnimationController;
     [Header("Current Animation")]
     public string currentAnimationName;
+    private PlayerController playerController;
     //public int currentAnimationframe;
 
     // Start is called before the first frame update
@@ -24,6 +25,7 @@ public class AnimatorController : MonoBehaviour
         Application.targetFrameRate = 60;
         terpsichoraAnimationController = terpsichora.GetComponent<AnimationController>();
         characterAnimationController = character.GetComponent<AnimationController>();
+        playerController = GetComponent<PlayerController>();
     }
     public void Start()
     {
@@ -31,18 +33,7 @@ public class AnimatorController : MonoBehaviour
     }
     private void Update()
     {
-        currentAnimationName = GetCurrentAnimationName();
-        /*
-        if(currentAnimationName!="Idle")
-        {
-            character.transform.parent = transform;
-        }
-        else
-        {
-            character.transform.parent = terpsichora.transform;
-        }
-        */
-        
+        currentAnimationName = GetCurrentAnimationName();       
     }
     public void PlayAnimations(string name)
     {
@@ -54,7 +45,7 @@ public class AnimatorController : MonoBehaviour
                 break;
             case "Slash0":
                 characterAnimationController.PlayAnimation("C_Slash0");
-                terpsichoraAnimationController.PlayAnimation("T_Slash0");
+                terpsichoraAnimationController.PlayAnimation("T_Slash0"); 
                 break;
             case "Slash1":
                 characterAnimationController.PlayAnimation("C_Slash1");
@@ -64,8 +55,11 @@ public class AnimatorController : MonoBehaviour
                 characterAnimationController.PlayAnimation("C_Slash2");
                 terpsichoraAnimationController.PlayAnimation("T_Slash2");
                 break;
+            case "FrontDash":
+                characterAnimationController.PlayAnimation("C_FrontDash");
+                terpsichoraAnimationController.PlayAnimation("T_FrontDash");
+                break;
         }
-        //animator.SetTrigger(name);
     }
     
     public string GetCurrentAnimationName()
@@ -75,6 +69,7 @@ public class AnimatorController : MonoBehaviour
         {
             return "Idle";
         }
+
         if (terpsichoraAnimationController.currentAnimationName == "T_Slash0" &&
             characterAnimationController.currentAnimationName == "C_Slash0")
         {
@@ -90,9 +85,14 @@ public class AnimatorController : MonoBehaviour
         {
             return "Slash2";
         }
+        if (terpsichoraAnimationController.currentAnimationName == "T_FrontDash" &&
+            characterAnimationController.currentAnimationName == "C_FrontDash")
+        {
+            return "FrontDash";
+        }
         else
         {
-            Debug.Log("Errro Grave");
+            //Debug.Log("Errro Grave");
             return "Error";
         }
 

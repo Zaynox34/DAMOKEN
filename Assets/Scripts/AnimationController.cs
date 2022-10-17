@@ -6,6 +6,7 @@ public class AnimationController : MonoBehaviour
 {
     public GameObject character;
     public GameObject player;
+    private PlayerController playerController;
     private Animator animator;
     public AnimatorStateInfo currentAnimatorStateInfo;
     public AnimationClip currentAnimationClip;
@@ -15,6 +16,7 @@ public class AnimationController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        playerController = player.GetComponent<PlayerController>();
     }
     public void GetInfoAnimation()
     {
@@ -28,8 +30,12 @@ public class AnimationController : MonoBehaviour
             currentAnimationClip.frameRate));
         if(currentAnimationName!="T_Idle")
         {
+            if(currentAnimationFrame==0)
+            {
+                //Debug.Log(name);
+                playerController.dejaEnable = false;
+            }
             character.transform.parent = transform;
-            //character.transform.position = new Vector3(transform.position.x, 0.8f, transform.position.z);
         }
         else
         {

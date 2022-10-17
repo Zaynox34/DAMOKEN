@@ -13,10 +13,7 @@ public class PlayerController : MonoBehaviour
     
     private HitboxController hitboxController;
     private AnimatorController animationController;
-
-    private InputAction slash0Action;
-    private InputAction slash1Action;
-    private InputAction slash2Action;
+    public bool dejaEnable; //bolean qui evite le double input et oblige un decalage
     private void Awake()
     {
         hitboxController = GetComponent<HitboxController>();
@@ -29,6 +26,8 @@ public class PlayerController : MonoBehaviour
         playerScriptableObject.playerControls.War.Slash0.performed += Slash0;
         playerScriptableObject.playerControls.War.Slash1.performed += Slash1;
         playerScriptableObject.playerControls.War.Slash2.performed += Slash2;
+
+        playerScriptableObject.playerControls.War.Dash.performed += FrontDash;
     }
     private void OnDisable()
     {
@@ -36,32 +35,47 @@ public class PlayerController : MonoBehaviour
         playerScriptableObject.playerControls.War.Slash0.performed -= Slash0;
         playerScriptableObject.playerControls.War.Slash1.performed -= Slash1;
         playerScriptableObject.playerControls.War.Slash2.performed -= Slash2;
+
+        playerScriptableObject.playerControls.War.Dash.performed -= FrontDash;
     }
     // Start is called before the first frame update
     void Start()
     {
-        hitboxController.StartCheckingCollision();   
+        hitboxController.StartCheckingCollision();
+        dejaEnable =false;
     }
     public void Slash0(InputAction.CallbackContext context)
     {
 
-        if (animationController.GetCurrentAnimationName() == "Idle")
+        if ((animationController.GetCurrentAnimationName() == "Idle")&& !dejaEnable)
         {
+            dejaEnable = true;
             animationController.PlayAnimations("Slash0");
         }
     }
     public void Slash1(InputAction.CallbackContext context)
     {
-        if (animationController.GetCurrentAnimationName() == "Idle")
+        if ((animationController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
         {
+            dejaEnable = true;
             animationController.PlayAnimations("Slash1");
         }
     }
     public void Slash2(InputAction.CallbackContext context)
     {
-        if (animationController.GetCurrentAnimationName() == "Idle")
+        if ((animationController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
         {
+            dejaEnable = true;
             animationController.PlayAnimations("Slash2");
+        }
+    }
+    public void FrontDash(InputAction.CallbackContext context)
+    {
+        if ((animationController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+        {
+            
+            dejaEnable = true;
+            animationController.PlayAnimations("FrontDash");
         }
     }
     // Update is called once per frame
@@ -78,7 +92,6 @@ public class PlayerController : MonoBehaviour
     }
     public void Walk(Vector2 moveInput)
     {
-        //Debug.Log(new Vector3(moveInput.x * playerScriptableObject.speed, 0, 0) * Time.deltaTime);
         transform.position += new Vector3(moveInput.x * playerScriptableObject.speed, 0, 0) * Time.deltaTime;
     }
 }

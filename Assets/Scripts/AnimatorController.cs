@@ -6,15 +6,19 @@ public class AnimatorController : MonoBehaviour
 {
     public GameObject test;
     [Header("Terpsichora")]
-    [SerializeField]
-    private GameObject terpsichora;
+    public GameObject terpsichora;
     private AnimationController terpsichoraAnimationController;
     [Header("Character")]
-    [SerializeField]
-    private GameObject character;
+    public GameObject character;
     private AnimationController characterAnimationController;
     [Header("Current Animation")]
     public string currentAnimationName;
+    public State currentStateSkill;
+    public SkillScriptableObject currentSkillScriptableObject;
+    
+
+    [SerializeField]
+    private PlayerScriptableObject playerScriptableObject;
     private PlayerController playerController;
     //public int currentAnimationframe;
 
@@ -26,6 +30,7 @@ public class AnimatorController : MonoBehaviour
         terpsichoraAnimationController = terpsichora.GetComponent<AnimationController>();
         characterAnimationController = character.GetComponent<AnimationController>();
         playerController = GetComponent<PlayerController>();
+        playerScriptableObject = playerController.playerScriptableObject;
     }
     public void Start()
     {
@@ -33,7 +38,8 @@ public class AnimatorController : MonoBehaviour
     }
     private void Update()
     {
-        currentAnimationName = GetCurrentAnimationName();       
+        
+        currentAnimationName = GetCurrentAnimationName(); 
     }
     public void PlayAnimations(string name)
     {
@@ -64,37 +70,14 @@ public class AnimatorController : MonoBehaviour
     
     public string GetCurrentAnimationName()
     {
-        if(terpsichoraAnimationController.currentAnimationName == "T_Idle" &&
-            characterAnimationController.currentAnimationName == "C_Idle")
+        if (currentSkillScriptableObject == null)
         {
-            return "Idle";
-        }
-
-        if (terpsichoraAnimationController.currentAnimationName == "T_Slash0" &&
-            characterAnimationController.currentAnimationName == "C_Slash0")
-        {
-            return "Slash0";
-        }
-        if (terpsichoraAnimationController.currentAnimationName == "T_Slash1" &&
-            characterAnimationController.currentAnimationName == "C_Slash1")
-        {
-            return "Slash1";
-        }
-        if (terpsichoraAnimationController.currentAnimationName == "T_Slash2" &&
-            characterAnimationController.currentAnimationName == "C_Slash2")
-        {
-            return "Slash2";
-        }
-        if (terpsichoraAnimationController.currentAnimationName == "T_FrontDash" &&
-            characterAnimationController.currentAnimationName == "C_FrontDash")
-        {
-            return "FrontDash";
+            return "Error";
         }
         else
         {
-            //Debug.Log("Errro Grave");
-            return "Error";
+            return currentSkillScriptableObject.name;
         }
-
     }
+    
 }

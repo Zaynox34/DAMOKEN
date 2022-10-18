@@ -4,10 +4,10 @@ using UnityEngine;
 
 public enum State
 {
-    Idle,
+    //Idle,
     Startup,
     Active,
     Recovery,
-    Hit,
-    OnBlock
+    Ghost,
+    Unknow
 }

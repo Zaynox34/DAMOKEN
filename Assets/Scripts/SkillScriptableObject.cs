@@ -7,81 +7,66 @@ public class SkillScriptableObject : ScriptableObject
 {
     //[field: SerializeField]
     //public Animation animation;
-    
-    
-    //[field: SerializeField]
-    //public float skillRange { get; private set; } = 10;
-    [field: SerializeField]
-    public int skillStartupTime { get; private set; } = 10;
-    [field: SerializeField]
-    public int skillActiveTime { get; private set; } = 10;
-    
-    [field: SerializeField]
-    public int skillRecoveryTime { get; private set; } = 10;
-    
 
-    //[field: SerializeField]
-    //public List<float> compressProportionPerFrame;
-    //[field: SerializeField]
-    //public List<float> proportionPerFrame;
-    
-    
     [field: SerializeField]
+    public string skillName;
+    [field: SerializeField]
+    public int skillStartActiveState=-1;// case compris
+    [field: SerializeField]
+    public int skillEndActiveState=-1;// case compris
+   /*
     public List<List<ColidBox>> hurtboxColider;
     [field: SerializeField]
     public List<List<ColidBox>> pushboxColider;
     public AudioClip attackSound;
-    
-    public int TotalSkillTime()
-    {
-        return skillStartupTime + skillActiveTime + skillRecoveryTime;
-    }
+    */
     
     public State StatusOfSkill(int frame)
     {
-        if (frame < 0)
+        if(skillEndActiveState==-1 && skillEndActiveState == -1)
         {
-            return State.Idle;
+            return State.Ghost;
         }
-        else
+        else 
         {
-            if (frame <= skillStartupTime)
+            if(frame<skillStartActiveState)
             {
                 return State.Startup;
             }
             else
             {
-                if (frame <= (skillStartupTime + skillActiveTime))
+                if ((frame >= skillStartActiveState) && (frame <= skillEndActiveState))
                 {
                     return State.Active;
                 }
                 else
                 {
-                    if (frame <= (skillStartupTime + skillActiveTime + skillRecoveryTime))
+                    if (frame > skillEndActiveState)
                     {
                         return State.Recovery;
                     }
                     else
                     {
-                        return State.Idle;///????
+                        return State.Unknow;
                     }
                 }
             }
+
         }
     }
-    
-    /*
-    public void UncompressProportionPerFrame()
+    /*public List<string> SkillNameToSkillPArticularName() // 1er element T 2e C
     {
-        proportionPerFrame = new List<float>();
-        for (int i = 0; i < TotalSkillTime(); i++)
-        {
-            proportionPerFrame.Add(0);
-        }
-        for (int i = 0; i < compressProportionPerFrame.Count; i += 2)
-        {
-            proportionPerFrame[i] = compressProportionPerFrame[i + 1];
-        }
-    }*/
-    
+        List<string> result = new List<string>();
+        result.Add("T_" + skillName);
+        result.Add("C_" + skillName);
+        return result;
+    }
+    public string SkillPArticularNameToSkillName() // 1er element T 2e C
+    {
+        List<string> result = new List<string>();
+        result.Add("T_" + skillName);
+        result.Add("C_" + skillName);
+        return result;
+    }
+    */
 }

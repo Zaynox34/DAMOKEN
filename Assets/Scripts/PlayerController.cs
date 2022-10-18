@@ -8,8 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private State playerState;
-    [SerializeField]
-    private PlayerScriptableObject playerScriptableObject;
+    public PlayerScriptableObject playerScriptableObject;
     
     private HitboxController hitboxController;
     private AnimatorController animationController;

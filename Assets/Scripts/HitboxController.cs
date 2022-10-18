@@ -5,7 +5,7 @@ using UnityEngine;
 public class HitboxController : MonoBehaviour
 {
     [Header("UseInGame")]
-    public AttackScriptableObject attackScriptUse;
+    //public AttackScriptableObject attackScriptUse;
     [SerializeField]
     private ColliderState _state;
     public LayerMask mask;

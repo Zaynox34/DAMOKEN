@@ -14,13 +14,17 @@ public class SkillScriptableObject : ScriptableObject
     public int skillStartActiveState=-1;// case compris
     [field: SerializeField]
     public int skillEndActiveState=-1;// case compris
-   /*
-    public List<List<ColidBox>> hurtboxColider;
     [field: SerializeField]
-    public List<List<ColidBox>> pushboxColider;
-    public AudioClip attackSound;
-    */
-    
+    public List<SkillScriptableObject> listSJw; // liste des Skill qui peuvent te cance
+    [field: SerializeField]
+    public List<State> StateLesTermes; // a quel state le skill peut etre cancel;
+    /*
+     public List<List<ColidBox>> hurtboxColider;
+     [field: SerializeField]
+     public List<List<ColidBox>> pushboxColider;
+     public AudioClip attackSound;
+     */
+
     public State StatusOfSkill(int frame)
     {
         if(skillEndActiveState==-1 && skillEndActiveState == -1)
@@ -52,6 +56,32 @@ public class SkillScriptableObject : ScriptableObject
                 }
             }
 
+        }
+    }
+    public bool isCancelable(SkillScriptableObject skill,State state) // skill canceleur et state canceler
+    {
+        bool res=false;
+        foreach(SkillScriptableObject s in listSJw)
+        {
+            if(skill==s)
+            {
+                res = true;
+            }
+        }
+        if (!res)
+        {
+            return false;
+        }
+        else
+        {
+            foreach (State s in StateLesTermes)
+            {
+                if (state == s)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
     /*public List<string> SkillNameToSkillPArticularName() // 1er element T 2e C

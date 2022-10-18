@@ -16,3 +16,9 @@ MonoBehaviour:
   <speed>k__BackingField: 5
   listSkillScript:
   - {fileID: 11400000, guid: fa4bb00a754468c41b7528b27a1b0a13, type: 2}
+  - {fileID: 11400000, guid: 1a8aa57747e2c044090edea8ee5360c4, type: 2}
+  - {fileID: 11400000, guid: e6fd8d261776fcf45bad0296300011b6, type: 2}
+  - {fileID: 11400000, guid: 1432754e3b3221c4fae5d1fdba97640f, type: 2}
+  - {fileID: 11400000, guid: d5c57ba8fefad824c812e0b1cc8f3e55, type: 2}
+  - {fileID: 11400000, guid: 9311f1ef661273848a2c8d4f3eba646a, type: 2}
+  - {fileID: 11400000, guid: d75cf26815037c64f893f08f8d7bbb3d, type: 2}

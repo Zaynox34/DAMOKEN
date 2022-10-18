@@ -11,13 +11,14 @@ public class PlayerController : MonoBehaviour
     public PlayerScriptableObject playerScriptableObject;
     
     private HitboxController hitboxController;
-    private AnimatorController animationController;
+    private AnimatorController animatorController;
+    public Vector2 moveInput;
     public bool dejaEnable; //bolean qui evite le double input et oblige un decalage
     private void Awake()
     {
         hitboxController = GetComponent<HitboxController>();
         playerScriptableObject.playerControls = new PlayerControls();
-        animationController = GetComponent<AnimatorController>();
+        animatorController = GetComponent<AnimatorController>();
     }
     private void OnEnable()
     {
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
         playerScriptableObject.playerControls.War.Slash1.performed += Slash1;
         playerScriptableObject.playerControls.War.Slash2.performed += Slash2;
 
-        playerScriptableObject.playerControls.War.Dash.performed += FrontDash;
+        playerScriptableObject.playerControls.War.Dash.performed += Dash;
     }
     private void OnDisable()
     {
@@ -35,55 +36,112 @@ public class PlayerController : MonoBehaviour
         playerScriptableObject.playerControls.War.Slash1.performed -= Slash1;
         playerScriptableObject.playerControls.War.Slash2.performed -= Slash2;
 
-        playerScriptableObject.playerControls.War.Dash.performed -= FrontDash;
+        playerScriptableObject.playerControls.War.Dash.performed -= Dash;
     }
     // Start is called before the first frame update
     void Start()
     {
         hitboxController.StartCheckingCollision();
         dejaEnable =false;
+        moveInput = Vector2.zero;
     }
     public void Slash0(InputAction.CallbackContext context)
     {
 
-        if ((animationController.GetCurrentAnimationName() == "Idle")&& !dejaEnable)
+        if ((animatorController.GetCurrentAnimationName() == "Idle")&& !dejaEnable)
         {
             dejaEnable = true;
-            animationController.PlayAnimations("Slash0");
+            animatorController.PlayAnimations("Slash0");
+        }
+        else
+        { 
+            if(animatorController.PeutCanceler(playerScriptableObject.listSkillScript[1]) && !dejaEnable)
+            {
+                dejaEnable = true;
+                animatorController.PlayAnimations("Cancel");
+                animatorController.PlayAnimations("Slash0");
+            }
         }
     }
     public void Slash1(InputAction.CallbackContext context)
     {
-        if ((animationController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+        if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
         {
             dejaEnable = true;
-            animationController.PlayAnimations("Slash1");
+            animatorController.PlayAnimations("Slash1");
+        }
+        else
+        {
+            if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[2]) && !dejaEnable)
+            {
+                dejaEnable = true;
+                animatorController.PlayAnimations("Cancel");
+                animatorController.PlayAnimations("Slash1");
+            }
         }
     }
     public void Slash2(InputAction.CallbackContext context)
     {
-        if ((animationController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+        if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
         {
             dejaEnable = true;
-            animationController.PlayAnimations("Slash2");
+            animatorController.PlayAnimations("Slash2");
+        }
+        else
+        {
+            if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[3]) && !dejaEnable)
+            {
+                dejaEnable = true;
+                animatorController.PlayAnimations("Cancel");
+                animatorController.PlayAnimations("Slash2");
+            }
         }
     }
-    public void FrontDash(InputAction.CallbackContext context)
+    public void Dash(InputAction.CallbackContext context)
     {
-        if ((animationController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+        if (moveInput.x < 0)
         {
-            
-            dejaEnable = true;
-            animationController.PlayAnimations("FrontDash");
+            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+            {
+                dejaEnable = true;
+                animatorController.PlayAnimations("BackDash");
+            }
+            else
+            {
+                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[5]) && !dejaEnable)
+                {
+                    dejaEnable = true;
+                    animatorController.PlayAnimations("Cancel");
+                    animatorController.PlayAnimations("BackDash");
+                }
+            }
         }
+        else
+        {
+            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+            {
+                dejaEnable = true;
+                animatorController.PlayAnimations("FrontDash");
+            }
+            else
+            {
+                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[4]) && !dejaEnable)
+                {
+                    dejaEnable = true;
+                    animatorController.PlayAnimations("Cancel");
+                    animatorController.PlayAnimations("FrontDash");
+                }
+            }
+        }
+        
     }
     // Update is called once per frame
     void Update()
     {
-        Vector2 moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
+        moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)
         {
-            if (animationController.GetCurrentAnimationName() == "Idle")
+            if (animatorController.GetCurrentAnimationName() == "Idle")
             {
                 Walk(moveInput);
             }

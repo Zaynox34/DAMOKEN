@@ -65,6 +65,14 @@ public class AnimatorController : MonoBehaviour
                 characterAnimationController.PlayAnimation("C_FrontDash");
                 terpsichoraAnimationController.PlayAnimation("T_FrontDash");
                 break;
+            case "BackDash":
+                characterAnimationController.PlayAnimation("C_BackDash");
+                terpsichoraAnimationController.PlayAnimation("T_BackDash");
+                break;
+            case "Cancel":
+                characterAnimationController.PlayAnimation("C_Cancel");
+                terpsichoraAnimationController.PlayAnimation("T_Cancel");
+                break;
         }
     }
     
@@ -79,5 +87,12 @@ public class AnimatorController : MonoBehaviour
             return currentSkillScriptableObject.name;
         }
     }
-    
+    public SkillScriptableObject GetCurrentSkill()
+    {
+        return currentSkillScriptableObject;
+    }
+    public bool PeutCanceler(SkillScriptableObject Canceleur)
+    {
+        return GetCurrentSkill().isCancelable(Canceleur, currentStateSkill);
+    }
 }

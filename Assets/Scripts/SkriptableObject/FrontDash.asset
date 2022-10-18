@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b41315e0d257bf48ab662ad03d705c0, type: 3}
   m_Name: FrontDash
   m_EditorClassIdentifier: 
-  skillName: 
-  skillStartActiveState: -1
-  skillEndActiveState: -1
+  skillName: FrontDash
+  skillStartActiveState: 3
+  skillEndActiveState: 24
+  listSJw:
+  - {fileID: 11400000, guid: 1a8aa57747e2c044090edea8ee5360c4, type: 2}
+  - {fileID: 11400000, guid: e6fd8d261776fcf45bad0296300011b6, type: 2}
+  - {fileID: 11400000, guid: 1432754e3b3221c4fae5d1fdba97640f, type: 2}
+  StateLesTermes: 0000000001000000020000000300000004000000

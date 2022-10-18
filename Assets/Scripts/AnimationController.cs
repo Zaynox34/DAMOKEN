@@ -22,7 +22,7 @@ public class AnimationController : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         animatorController = player.GetComponent<AnimatorController>();
         isActiveState = false;
-        a = 0;
+        //a = 0;
     }
     public void ActiveStateEnable()
     {
@@ -93,6 +93,23 @@ public class AnimationController : MonoBehaviour
                             i = 4;
                             
                         }
+                        else
+                        {
+                            if (currentAnimationName == "C_BackDash")
+                            {
+                                i = 5;
+
+                            }
+                            else
+                            {
+                                if (currentAnimationName == "C_Cancel")
+                                {
+                                    i = 6;
+
+                                }
+                            }
+                        }
+
                     }
                 }
             }
@@ -105,7 +122,7 @@ public class AnimationController : MonoBehaviour
     }
     public void LaMagie()
     {
-        if (currentAnimationName != "T_Idle")
+        if (currentAnimationName != "T_Idle"&& currentAnimationName != "T_Cancel")
         {
             if (currentAnimationFrame == 0)
             {

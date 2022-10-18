@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b41315e0d257bf48ab662ad03d705c0, type: 3}
   m_Name: Slash2
   m_EditorClassIdentifier: 
-  skillName: 
-  skillStartActiveState: -1
-  skillEndActiveState: -1
+  skillName: Slash2
+  skillStartActiveState: 19
+  skillEndActiveState: 23
+  listSJw:
+  - {fileID: 11400000, guid: 1a8aa57747e2c044090edea8ee5360c4, type: 2}
+  - {fileID: 11400000, guid: e6fd8d261776fcf45bad0296300011b6, type: 2}
+  - {fileID: 11400000, guid: 9311f1ef661273848a2c8d4f3eba646a, type: 2}
+  - {fileID: 11400000, guid: d5c57ba8fefad824c812e0b1cc8f3e55, type: 2}
+  StateLesTermes: 00000000

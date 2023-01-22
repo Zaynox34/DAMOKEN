@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
         hitboxController = GetComponent<HitboxController>();
         playerScriptableObject.playerControls = new PlayerControls();
         animatorController = GetComponent<AnimatorController>();
+        /*
+        Debug.Log(GetComponent<PlayerInput>().actions);
+        Debug.Log(GetComponent<PlayerInput>().currentControlScheme);
+        
+        InputDevice a = Gamepad.current;
+        GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
+        Debug.Log(GetComponent<PlayerInput>().actions);
+        Debug.Log(GetComponent<PlayerInput>().currentControlScheme);*/
     }
     private void OnEnable()
     {
@@ -31,12 +39,14 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDisable()
     {
+        
         playerScriptableObject.playerControls.Disable();
         playerScriptableObject.playerControls.War.Slash0.performed -= Slash0;
         playerScriptableObject.playerControls.War.Slash1.performed -= Slash1;
         playerScriptableObject.playerControls.War.Slash2.performed -= Slash2;
 
         playerScriptableObject.playerControls.War.Dash.performed -= Dash;
+        
     }
     // Start is called before the first frame update
     void Start()

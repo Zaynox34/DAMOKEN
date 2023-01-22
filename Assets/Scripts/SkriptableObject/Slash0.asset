@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Slash0
   m_EditorClassIdentifier: 
   skillName: Slash0
-  skillStartActiveState: 19
-  skillEndActiveState: 23
+  skillStartActiveState: 12
+  skillEndActiveState: 16
   listSJw:
   - {fileID: 11400000, guid: 9311f1ef661273848a2c8d4f3eba646a, type: 2}
   - {fileID: 11400000, guid: d5c57ba8fefad824c812e0b1cc8f3e55, type: 2}

@@ -296,7 +296,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Confirm"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""f8adb970-07c4-4218-82a6-215f0ec15bf0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

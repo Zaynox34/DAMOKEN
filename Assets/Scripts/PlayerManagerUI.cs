@@ -11,17 +11,50 @@ public class PlayerManagerUI : MonoBehaviour
     public Sprite screenStartImage;
     public Sprite screenSelectController;
     public float playerSpeed;
+
+    public static PlayerManagerUI instance = null;
+
     public PlayerInputManager playerInputManager;
     public Transform player1Transform;
     public Transform player2Transform;
     public Transform controllerTransform;
 
+    public InputAction joinAction;
+    public InputAction leaveAction;
+    //event
+    public event System.Action<PlayerInput> PlayerJoinedGame;
+    public event System.Action<PlayerInput> PlayerLeftGame;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if(instance==null)
+        {
+            instance = this;
+        }
+        else if(instance!=null)
+        {
+            Destroy(gameObject);
+        }
         spriteRenderer = background.GetComponent<SpriteRenderer>();
         playerInputManager = GetComponent<PlayerInputManager>();
         spriteRenderer.sprite = screenStartImage;
+        joinAction.Enable();
+        joinAction.performed += context => JoinAction(context);
+        leaveAction.Enable();
+        leaveAction.performed += context => LeaveAction(context);
+    }
+    void Start()
+    {
+        /*PlayerInputManager.instance.JoinPlayer(0, -1, null);*/
+    }
+    public void JoinAction(InputAction.CallbackContext context)
+    {
+        PlayerInputManager.instance.JoinPlayerFromActionIfNotAlreadyJoined(context);
+    }
+    public void LeaveAction(InputAction.CallbackContext context)
+    {
+
     }
     public void Cancel ()
     {
@@ -33,17 +66,20 @@ public class PlayerManagerUI : MonoBehaviour
         spriteRenderer.sprite = screenStartImage;
 
     }
-    public void OnPlayerJoined()
+    public void OnPlayerJoined(PlayerInput playerInput)
     {
-        
         Debug.Log("Player " + (playerInputManager.playerCount -1) + " a rejoint.");
         if (playerInputManager.playerCount > 0  && screenStartImage==spriteRenderer.sprite)
         {
             spriteRenderer.sprite = screenSelectController;    
         }
+        if(PlayerJoinedGame !=null)
+        {
+            PlayerJoinedGame(playerInput);
+        }
         
     }
-    public void OnPlayerLeft()
+    public void OnPlayerLeft(PlayerInput playerInput)
     {
         Debug.Log("Player " + playerInputManager.playerCount + " a quitté.");
     }

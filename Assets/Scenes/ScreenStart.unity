@@ -281,8 +281,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 435281821}
-  - component: {fileID: 435281820}
   - component: {fileID: 435281822}
+  - component: {fileID: 435281820}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -305,14 +305,14 @@ MonoBehaviour:
   m_NotificationBehavior: 2
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 1
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 435281822}
         m_TargetAssemblyTypeName: PlayerManagerUI, Assembly-CSharp
         m_MethodName: OnPlayerJoined
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -327,7 +327,7 @@ MonoBehaviour:
       - m_Target: {fileID: 435281822}
         m_TargetAssemblyTypeName: PlayerManagerUI, Assembly-CSharp
         m_MethodName: OnPlayerLeft
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -391,6 +391,54 @@ MonoBehaviour:
   player1Transform: {fileID: 1676085665}
   player2Transform: {fileID: 1428745618}
   controllerTransform: {fileID: 1495174728}
+  joinAction:
+    m_Name: Join
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 053933d1-e8fa-4957-97dd-91b52455616f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 46e3a67a-615f-4124-9a58-538cc49eae0a
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Join
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 6d7cbe39-c5c9-43af-83c2-dca6de7d87f0
+      m_Path: <Gamepad>/start
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Join
+      m_Flags: 0
+  leaveAction:
+    m_Name: Leave
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1e34d3e3-1e35-4054-9314-e56aeb0a61bb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 16712358-9a91-49a7-a862-c06ed385f51c
+      m_Path: <Gamepad>/select
+      m_Interactions: Hold
+      m_Processors: 
+      m_Groups: 
+      m_Action: Leave
+      m_Flags: 0
+    - m_Name: 
+      m_Id: b988362c-ea6c-47ff-95b2-7ee5560d35c5
+      m_Path: <Keyboard>/escape
+      m_Interactions: Hold
+      m_Processors: 
+      m_Groups: 
+      m_Action: Leave
+      m_Flags: 0
 --- !u!1 &439251055
 GameObject:
   m_ObjectHideFlags: 0

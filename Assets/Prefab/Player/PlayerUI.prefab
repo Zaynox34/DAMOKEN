@@ -99,10 +99,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 10
   confirmed: 1
-  canceled: 0
-  movementInput: {x: 0, y: 0}
+  canceled: 1
+  movementInput: {x: -1, y: 0}
   playerIndex: 0
   playerManagerUI: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
 --- !u!114 &2514730700584884288
 MonoBehaviour:
   m_ObjectHideFlags: 0

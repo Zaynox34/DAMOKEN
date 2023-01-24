@@ -6,13 +6,14 @@ using UnityEngine;
 public class PlayerControllerUi : MonoBehaviour
 {
     public float playerSpeed;
-    public bool confirmed;
-    public bool canceled;
+    //public bool confirmed;
+    //public bool canceled;
     public Vector2 movementInput=Vector2.zero;
     public int playerIndex;
     public GameObject playerManagerUI;
     private PlayerManagerUI playerManagerUIConponent;
     public Vector3 target;
+    public bool verouiler;
 
 
     // Start is called before the first frame update
@@ -23,27 +24,18 @@ public class PlayerControllerUi : MonoBehaviour
         playerManagerUIConponent = playerManagerUI.GetComponent<PlayerManagerUI>();
         transform.position=playerManagerUIConponent.controllerTransform.position;
         target = playerManagerUIConponent.controllerTransform.position;
+        verouiler = false;
     }
     
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!verouiler)
         {
-            movementInput = context.ReadValue<Vector2>();
-            if (target == playerManagerUIConponent.controllerTransform.position)
+            if (context.performed)
             {
-                if (movementInput.x < 0)
-                {
-                    target = playerManagerUIConponent.player1Transform.position;
-                }
-                if (movementInput.x > 0)
-                {
-                    target = playerManagerUIConponent.player2Transform.position;
-                }
-            }
-            else
-            {
-                if (target == playerManagerUIConponent.player1Transform.position)
+
+                movementInput = context.ReadValue<Vector2>();
+                if (target == playerManagerUIConponent.controllerTransform.position)
                 {
                     if (movementInput.x < 0)
                     {
@@ -51,22 +43,44 @@ public class PlayerControllerUi : MonoBehaviour
                     }
                     if (movementInput.x > 0)
                     {
-                        target = playerManagerUIConponent.controllerTransform.position;
+                        target = playerManagerUIConponent.player2Transform.position;
                     }
                 }
                 else
                 {
-                    if (target == playerManagerUIConponent.player2Transform.position)
+                    if (target == playerManagerUIConponent.player1Transform.position)
                     {
                         if (movementInput.x < 0)
                         {
-                            target = playerManagerUIConponent.controllerTransform.position;
+                            target = playerManagerUIConponent.player1Transform.position;
                         }
                         if (movementInput.x > 0)
                         {
-                            target = playerManagerUIConponent.player2Transform.position;
+                            target = playerManagerUIConponent.controllerTransform.position;
                         }
                     }
+                    else
+                    {
+                        if (target == playerManagerUIConponent.player2Transform.position)
+                        {
+                            if (movementInput.x < 0)
+                            {
+                                target = playerManagerUIConponent.controllerTransform.position;
+                            }
+                            if (movementInput.x > 0)
+                            {
+                                target = playerManagerUIConponent.player2Transform.position;
+                            }
+                        }
+                    }
+                }
+                if (playerManagerUIConponent.player1 != null && target == playerManagerUIConponent.player1Transform.position)
+                {
+                    target = playerManagerUIConponent.controllerTransform.position;
+                }
+                if (playerManagerUIConponent.player2 != null && target == playerManagerUIConponent.player2Transform.position)
+                {
+                    target = playerManagerUIConponent.controllerTransform.position;
                 }
             }
         }
@@ -77,17 +91,44 @@ public class PlayerControllerUi : MonoBehaviour
     {
         if (context.performed)
         {
-            confirmed = context.action.triggered;
+            //confirmed = context.action.triggered;
             Debug.Log("DamoComfirm");
+            if (playerManagerUIConponent.player1 == this.gameObject)
+            {
+                Debug.Log("DAMOREADY 1");
+                playerManagerUIConponent.readyplayer1=true;
+                verouiler = true;
+            }
+            if (playerManagerUIConponent.player2 == this.gameObject)
+            {
+                Debug.Log("DAMOREADY 2");
+                playerManagerUIConponent.readyplayer2 = true;
+                verouiler = true;
+            }
         } 
     }
     public void OnCancel(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            canceled = context.action.triggered;
-            playerManagerUI.GetComponent<PlayerManagerUI>().Cancel();
+            //canceled = context.action.triggered;
+            if(!verouiler)
+            {
+                playerManagerUI.GetComponent<PlayerManagerUI>().Cancel();
+            }
             Debug.Log("DamoCANcel");
+            if (playerManagerUIConponent.player1 == this.gameObject)
+            {
+                Debug.Log("DAMOREADY 1");
+                playerManagerUIConponent.readyplayer1 = false;
+                verouiler = false;
+            }
+            if (playerManagerUIConponent.player2 == this.gameObject)
+            {
+                Debug.Log("DAMOREADY 2");
+                playerManagerUIConponent.readyplayer2 = false;
+                verouiler = false;
+            }
         }
     }
     // Update is called once per frame
@@ -98,10 +139,21 @@ public class PlayerControllerUi : MonoBehaviour
         
     }
     
-    
-    void Update()
+    public void MotherFucker()
     {
-        transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * playerSpeed);
+        transform.parent = null;
+        Destroy(this.gameObject);
+    }
+    void Update()
+    { 
+        if(target.x-transform.position.x<=0.2f&& target.x - transform.position.x >= -0.2f)
+        {
+            transform.position = target;
+        }
+        else
+        { 
+            transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * playerSpeed);
+        }
         
     }
 }

@@ -413,17 +413,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""26ac1e2e-e04b-4a15-8078-bada58b68be0"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keybord"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""7717ce15-7715-4232-b05a-a366055353e6"",
                     ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",

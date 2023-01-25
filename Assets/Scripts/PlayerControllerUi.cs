@@ -14,6 +14,7 @@ public class PlayerControllerUi : MonoBehaviour
     private PlayerManagerUI playerManagerUIConponent;
     public Vector3 target;
     public bool verouiler;
+    
 
 
     // Start is called before the first frame update
@@ -97,12 +98,15 @@ public class PlayerControllerUi : MonoBehaviour
             {
                 Debug.Log("DAMOREADY 1");
                 playerManagerUIConponent.readyplayer1=true;
+                playerManagerUIConponent.player1ScriptableObject.playerInput = GetComponent<PlayerInput>();
+                Debug.Log(playerManagerUIConponent.player1ScriptableObject.playerInput.currentControlScheme);
                 verouiler = true;
             }
             if (playerManagerUIConponent.player2 == this.gameObject)
             {
                 Debug.Log("DAMOREADY 2");
                 playerManagerUIConponent.readyplayer2 = true;
+                playerManagerUIConponent.player2ScriptableObject.playerInput = GetComponent<PlayerInput>();
                 verouiler = true;
             }
         } 

@@ -137,5 +137,13 @@ public class PlayerManagerUI : MonoBehaviour
                 player2 = null;
             }
         }
+        if(readyplayer1 && readyplayer2)
+        {
+            player1.GetComponent<PlayerControllerUi>().MotherFucker();
+            player2.GetComponent<PlayerControllerUi>().MotherFucker();
+            DontDestroyOnLoad(player1);
+            DontDestroyOnLoad(player2);
+            SceneManager.LoadScene(1);
+        }
     }
 }

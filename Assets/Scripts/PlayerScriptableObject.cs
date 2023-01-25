@@ -8,7 +8,6 @@ public class PlayerScriptableObject : ScriptableObject
 {
     [SerializeField]
     public PlayerControls playerControls;
-    public PlayerInput playerInput;
     [field: SerializeField, Range(min: 0, max: 100), Tooltip("description")]
     public int health { get; private set; } = 100;
     [field: SerializeField]

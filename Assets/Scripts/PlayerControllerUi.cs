@@ -93,20 +93,18 @@ public class PlayerControllerUi : MonoBehaviour
         if (context.performed)
         {
             //confirmed = context.action.triggered;
-            Debug.Log("DamoComfirm");
+            //Debug.Log("DamoComfirm");
             if (playerManagerUIConponent.player1 == this.gameObject)
             {
                 Debug.Log("DAMOREADY 1");
                 playerManagerUIConponent.readyplayer1=true;
-                playerManagerUIConponent.player1ScriptableObject.playerInput = GetComponent<PlayerInput>();
-                Debug.Log(playerManagerUIConponent.player1ScriptableObject.playerInput.currentControlScheme);
                 verouiler = true;
             }
             if (playerManagerUIConponent.player2 == this.gameObject)
             {
                 Debug.Log("DAMOREADY 2");
                 playerManagerUIConponent.readyplayer2 = true;
-                playerManagerUIConponent.player2ScriptableObject.playerInput = GetComponent<PlayerInput>();
+                
                 verouiler = true;
             }
         } 
@@ -123,13 +121,13 @@ public class PlayerControllerUi : MonoBehaviour
             Debug.Log("DamoCANcel");
             if (playerManagerUIConponent.player1 == this.gameObject)
             {
-                Debug.Log("DAMOREADY 1");
+                Debug.Log("DAMOKANCEL 1");
                 playerManagerUIConponent.readyplayer1 = false;
                 verouiler = false;
             }
             if (playerManagerUIConponent.player2 == this.gameObject)
             {
-                Debug.Log("DAMOREADY 2");
+                Debug.Log("DAMOKANCEL 2");
                 playerManagerUIConponent.readyplayer2 = false;
                 verouiler = false;
             }
@@ -137,16 +135,13 @@ public class PlayerControllerUi : MonoBehaviour
     }
     // Update is called once per frame
     public void Akai()
-    {
-        
-        Destroy(this.gameObject);
-        
+    { 
+        Destroy(this.gameObject);  
     }
     
     public void MotherFucker()
     {
         transform.parent = null;
-        Destroy(this.gameObject);
     }
     void Update()
     { 

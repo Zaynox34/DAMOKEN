@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
     [SerializeField]
     private State playerState;
     public PlayerScriptableObject playerScriptableObject;

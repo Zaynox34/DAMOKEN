@@ -54,7 +54,6 @@ public class PlayerManagerUI : MonoBehaviour
     }
     void Start()
     {
-        /*PlayerInputManager.instance.JoinPlayer(0, -1, null);*/
     }
     public void JoinAction(InputAction.CallbackContext context)
     {
@@ -82,13 +81,13 @@ public class PlayerManagerUI : MonoBehaviour
         {
             PlayerLeftGame(playerASuprim.GetComponent<PlayerInput>());
         }
-        playerASuprim.GetComponent<PlayerControllerUi>().Akai();
+        playerASuprim.GetComponent<PlayerControllerUI>().Akai();
     }
     public void Cancel ()
     {
         for (int i=0;i<transform.childCount;i++)
         {
-            transform.GetChild(i).GetComponent<PlayerControllerUi>().Akai();
+            transform.GetChild(i).GetComponent<PlayerControllerUI>().Akai();
         }
         SceneManager.LoadScene(0);
         spriteRenderer.sprite = screenStartImage;
@@ -96,12 +95,15 @@ public class PlayerManagerUI : MonoBehaviour
     }
     public void OnPlayerJoined(PlayerInput playerInput)
     {
+        
         Debug.Log("Player " + (playerInputManager.playerCount -1) + " a rejoint.");
         if (playerInputManager.playerCount > 0  && screenStartImage==spriteRenderer.sprite)
         {
             spriteRenderer.sprite = screenSelectController;    
         }
-        if(PlayerJoinedGame !=null)
+        //PlayerJoinedGame(playerInput);
+        
+        if (PlayerJoinedGame !=null)
         {
             PlayerJoinedGame(playerInput);
         }
@@ -139,8 +141,8 @@ public class PlayerManagerUI : MonoBehaviour
         }
         if(readyplayer1 && readyplayer2)
         {
-            player1.GetComponent<PlayerControllerUi>().MotherFucker();
-            player2.GetComponent<PlayerControllerUi>().MotherFucker();
+            player1.GetComponent<PlayerControllerUI>().MotherFucker();
+            player2.GetComponent<PlayerControllerUI>().MotherFucker();
             DontDestroyOnLoad(player1);
             DontDestroyOnLoad(player2);
             SceneManager.LoadScene(1);

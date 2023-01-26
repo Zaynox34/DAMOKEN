@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 
-public class PlayerControllerUi : MonoBehaviour
+public class PlayerControllerUI : MonoBehaviour
 {
     public float playerSpeed;
-    //public bool confirmed;
-    //public bool canceled;
     public Vector2 movementInput=Vector2.zero;
     public int playerIndex;
     public GameObject playerManagerUI;
     private PlayerManagerUI playerManagerUIConponent;
-    public Vector3 target;
+    private Vector3 target;
     public bool verouiler;
     
 
@@ -23,9 +21,11 @@ public class PlayerControllerUi : MonoBehaviour
         playerManagerUI = GameObject.Find("PlayerManager");
         transform.parent = playerManagerUI.transform;
         playerManagerUIConponent = playerManagerUI.GetComponent<PlayerManagerUI>();
-        transform.position=playerManagerUIConponent.controllerTransform.position;
-        target = playerManagerUIConponent.controllerTransform.position;
+        playerIndex = playerManagerUI.transform.childCount - 1;
+        transform.position=playerManagerUIConponent.controllerTransform.position - (new Vector3(0, 2, 0) * playerIndex);
+        target = playerManagerUIConponent.controllerTransform.position - (new Vector3(0, 2, 0) * playerIndex);
         verouiler = false;
+        
     }
     
     public void OnMove(InputAction.CallbackContext context)
@@ -36,7 +36,7 @@ public class PlayerControllerUi : MonoBehaviour
             {
 
                 movementInput = context.ReadValue<Vector2>();
-                if (target == playerManagerUIConponent.controllerTransform.position)
+                if (target == playerManagerUIConponent.controllerTransform.position-(new Vector3(0,2,0)*playerIndex))
                 {
                     if (movementInput.x < 0)
                     {
@@ -57,7 +57,7 @@ public class PlayerControllerUi : MonoBehaviour
                         }
                         if (movementInput.x > 0)
                         {
-                            target = playerManagerUIConponent.controllerTransform.position;
+                            target = playerManagerUIConponent.controllerTransform.position - (new Vector3(0, 2, 0) * playerIndex);
                         }
                     }
                     else
@@ -66,7 +66,7 @@ public class PlayerControllerUi : MonoBehaviour
                         {
                             if (movementInput.x < 0)
                             {
-                                target = playerManagerUIConponent.controllerTransform.position;
+                                target = playerManagerUIConponent.controllerTransform.position - (new Vector3(0, 2, 0) * playerIndex);
                             }
                             if (movementInput.x > 0)
                             {
@@ -77,11 +77,11 @@ public class PlayerControllerUi : MonoBehaviour
                 }
                 if (playerManagerUIConponent.player1 != null && target == playerManagerUIConponent.player1Transform.position)
                 {
-                    target = playerManagerUIConponent.controllerTransform.position;
+                    target = playerManagerUIConponent.controllerTransform.position - (new Vector3(0, 2, 0) * playerIndex);
                 }
                 if (playerManagerUIConponent.player2 != null && target == playerManagerUIConponent.player2Transform.position)
                 {
-                    target = playerManagerUIConponent.controllerTransform.position;
+                    target = playerManagerUIConponent.controllerTransform.position - (new Vector3(0, 2, 0) * playerIndex);
                 }
             }
         }

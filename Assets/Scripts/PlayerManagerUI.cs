@@ -31,8 +31,8 @@ public class PlayerManagerUI : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
-    public PlayerScriptableObject player1ScriptableObject;
-    public PlayerScriptableObject player2ScriptableObject;
+    //public PlayerScriptableObject player1ScriptableObject;
+    //public PlayerScriptableObject player2ScriptableObject;
     // Start is called before the first frame update
     void Awake()
     {

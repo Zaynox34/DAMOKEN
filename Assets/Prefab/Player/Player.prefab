@@ -453,6 +453,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fdb9425b-bbc7-4a00-945a-46c60d814b20
     m_ActionName: War/Dash[/Keyboard/h,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c6fb839f-9763-4b12-952c-17cd02ba0c02
+    m_ActionName: Menu/Mouve[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/dpad,/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f8adb970-07c4-4218-82a6-215f0ec15bf0
+    m_ActionName: Menu/Confirm[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 26720174-289d-4e3f-bd6a-97c2a90d7750
+    m_ActionName: Menu/Cancel[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keybord
   m_DefaultActionMap: War
@@ -471,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: 0
-  playerScriptableObject: {fileID: 11400000, guid: 33b44b4ebf484bd4098039e1352b285b, type: 2}
+  playerScriptableObject: {fileID: 11400000, guid: cbd20cb950f443b48baa637fcdbf95e2, type: 2}
   moveInput: {x: 0, y: 0}
   dejaEnable: 0
 --- !u!114 &7729389568410935480

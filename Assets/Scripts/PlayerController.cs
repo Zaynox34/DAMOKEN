@@ -10,15 +10,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private State playerState;
     public PlayerScriptableObject playerScriptableObject;
-    
+    private PlayerInput playerinput;
+    private InputAction walkAction;
     private HitboxController hitboxController;
     private AnimatorController animatorController;
     public Vector2 moveInput;
     public bool dejaEnable; //bolean qui evite le double input et oblige un decalage
     private void Awake()
     {
+        playerinput = GetComponent<PlayerInput>();
+        walkAction = playerinput.actions["Walk"];
         hitboxController = GetComponent<HitboxController>();
-        playerScriptableObject.playerControls = new PlayerControls();
+        //playerScriptableObject.playerControls = new PlayerControls();
+
         animatorController = GetComponent<AnimatorController>();
         /*
         Debug.Log(GetComponent<PlayerInput>().actions);
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(GetComponent<PlayerInput>().actions);
         Debug.Log(GetComponent<PlayerInput>().currentControlScheme);*/
     }
+    /*
     private void OnEnable()
     {
         playerScriptableObject.playerControls.Enable();
@@ -48,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         playerScriptableObject.playerControls.War.Dash.performed -= Dash;
         
-    }
+    }*/
     // Start is called before the first frame update
     void Start()
     {
@@ -56,100 +61,112 @@ public class PlayerController : MonoBehaviour
         dejaEnable =false;
         moveInput = Vector2.zero;
     }
-    public void Slash0(InputAction.CallbackContext context)
-    {
 
-        if ((animatorController.GetCurrentAnimationName() == "Idle")&& !dejaEnable)
+            public void Slash0(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            dejaEnable = true;
-            animatorController.PlayAnimations("Slash0");
-        }
-        else
-        { 
-            if(animatorController.PeutCanceler(playerScriptableObject.listSkillScript[1]) && !dejaEnable)
+            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
             {
                 dejaEnable = true;
-                animatorController.PlayAnimations("Cancel");
                 animatorController.PlayAnimations("Slash0");
+            }
+            else
+            {
+                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[1]) && !dejaEnable)
+                {
+                    dejaEnable = true;
+                    animatorController.PlayAnimations("Cancel");
+                    animatorController.PlayAnimations("Slash0");
+                }
             }
         }
     }
     public void Slash1(InputAction.CallbackContext context)
     {
-        if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+        if (context.performed)
         {
-            dejaEnable = true;
-            animatorController.PlayAnimations("Slash1");
-        }
-        else
-        {
-            if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[2]) && !dejaEnable)
+            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
             {
                 dejaEnable = true;
-                animatorController.PlayAnimations("Cancel");
                 animatorController.PlayAnimations("Slash1");
+            }
+            else
+            {
+                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[2]) && !dejaEnable)
+                {
+                    dejaEnable = true;
+                    animatorController.PlayAnimations("Cancel");
+                    animatorController.PlayAnimations("Slash1");
+                }
             }
         }
     }
     public void Slash2(InputAction.CallbackContext context)
     {
-        if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+        if (context.performed)
         {
-            dejaEnable = true;
-            animatorController.PlayAnimations("Slash2");
-        }
-        else
-        {
-            if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[3]) && !dejaEnable)
+            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
             {
                 dejaEnable = true;
-                animatorController.PlayAnimations("Cancel");
                 animatorController.PlayAnimations("Slash2");
+            }
+            else
+            {
+                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[3]) && !dejaEnable)
+                {
+                    dejaEnable = true;
+                    animatorController.PlayAnimations("Cancel");
+                    animatorController.PlayAnimations("Slash2");
+                }
             }
         }
     }
     public void Dash(InputAction.CallbackContext context)
     {
-        if (moveInput.x < 0)
+        if (context.performed)
         {
-            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+            if (moveInput.x < 0)
             {
-                dejaEnable = true;
-                animatorController.PlayAnimations("BackDash");
-            }
-            else
-            {
-                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[5]) && !dejaEnable)
+                if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
                 {
                     dejaEnable = true;
-                    animatorController.PlayAnimations("Cancel");
                     animatorController.PlayAnimations("BackDash");
                 }
-            }
-        }
-        else
-        {
-            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
-            {
-                dejaEnable = true;
-                animatorController.PlayAnimations("FrontDash");
+                else
+                {
+                    if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[5]) && !dejaEnable)
+                    {
+                        dejaEnable = true;
+                        animatorController.PlayAnimations("Cancel");
+                        animatorController.PlayAnimations("BackDash");
+                    }
+                }
             }
             else
             {
-                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[4]) && !dejaEnable)
+                if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
                 {
                     dejaEnable = true;
-                    animatorController.PlayAnimations("Cancel");
                     animatorController.PlayAnimations("FrontDash");
+                }
+                else
+                {
+                    if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[4]) && !dejaEnable)
+                    {
+                        dejaEnable = true;
+                        animatorController.PlayAnimations("Cancel");
+                        animatorController.PlayAnimations("FrontDash");
+                    }
                 }
             }
         }
-        
     }
     // Update is called once per frame
     void Update()
     {
-        moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
+        moveInput = walkAction.ReadValue<Vector2>();
+        //moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)
         {
             if (animatorController.GetCurrentAnimationName() == "Idle")

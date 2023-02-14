@@ -19,9 +19,6 @@ public class SkillScriptableObject : ScriptableObject
     [field: SerializeField]
     public List<State> StateLesTermes; // a quel state le skill peut etre cancel;
     /*
-     public List<List<ColidBox>> hurtboxColider;
-     [field: SerializeField]
-     public List<List<ColidBox>> pushboxColider;
      public AudioClip attackSound;
      */
 

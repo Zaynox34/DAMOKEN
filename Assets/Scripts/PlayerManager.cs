@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance = null;
 
     public PlayerInputManager playerInputManager;
+    public DuelManager duelManager;
     public Transform player1Transform;
     public Transform player2Transform;
 
@@ -18,8 +19,8 @@ public class PlayerManager : MonoBehaviour
     public event System.Action<PlayerInput> PlayerJoinedGame;
     public event System.Action<PlayerInput> PlayerLeftGame;
 
-    public GameObject player1;
-    public GameObject player2;
+    //public GameObject player1;
+    //public GameObject player2;
 
     //public PlayerScriptableObject player1ScriptableObject;
     //public PlayerScriptableObject player2ScriptableObject;

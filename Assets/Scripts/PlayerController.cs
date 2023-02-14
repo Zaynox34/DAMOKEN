@@ -9,154 +9,160 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     private State playerState;
+    public DuelManager duelManager;
+    public GameObject playerManagerGameObject;
+    public PlayerManager playerManager;
+    public GameObject CameraGameObject;
+    public CameraManager CameraManager;
     public PlayerScriptableObject playerScriptableObject;
     private PlayerInput playerinput;
     private InputAction walkAction;
     private HitboxController hitboxController;
     private AnimatorController animatorController;
+
+    public int playerId;
     public Vector2 moveInput;
     public bool dejaEnable; //bolean qui evite le double input et oblige un decalage
     private void Awake()
     {
+        
+        playerManagerGameObject = GameObject.Find("PlayerManager");
+        transform.parent = playerManagerGameObject.transform;
+        playerManager = playerManagerGameObject.GetComponent<PlayerManager>();
+        playerId = playerManager.playerInputManager.playerCount;
+        duelManager = playerManager.duelManager;
         playerinput = GetComponent<PlayerInput>();
         walkAction = playerinput.actions["Walk"];
         hitboxController = GetComponent<HitboxController>();
-        //playerScriptableObject.playerControls = new PlayerControls();
-
         animatorController = GetComponent<AnimatorController>();
-        /*
-        Debug.Log(GetComponent<PlayerInput>().actions);
-        Debug.Log(GetComponent<PlayerInput>().currentControlScheme);
-        
-        InputDevice a = Gamepad.current;
-        GetComponent<PlayerInput>().SwitchCurrentControlScheme(Gamepad.current);
-        Debug.Log(GetComponent<PlayerInput>().actions);
-        Debug.Log(GetComponent<PlayerInput>().currentControlScheme);*/
-    }
-    /*
-    private void OnEnable()
-    {
-        playerScriptableObject.playerControls.Enable();
-        playerScriptableObject.playerControls.War.Slash0.performed += Slash0;
-        playerScriptableObject.playerControls.War.Slash1.performed += Slash1;
-        playerScriptableObject.playerControls.War.Slash2.performed += Slash2;
+        CameraGameObject = duelManager.CameraObject;
+        CameraManager = CameraGameObject.GetComponent<CameraManager>();
 
-        playerScriptableObject.playerControls.War.Dash.performed += Dash;
     }
-    private void OnDisable()
-    {
-        
-        playerScriptableObject.playerControls.Disable();
-        playerScriptableObject.playerControls.War.Slash0.performed -= Slash0;
-        playerScriptableObject.playerControls.War.Slash1.performed -= Slash1;
-        playerScriptableObject.playerControls.War.Slash2.performed -= Slash2;
-
-        playerScriptableObject.playerControls.War.Dash.performed -= Dash;
-        
-    }*/
     // Start is called before the first frame update
     void Start()
     {
+        if (playerId==1)
+        {
+            transform.position = duelManager.Player1TransformStart.position;
+            transform.localScale = duelManager.Player1TransformStart.localScale;
+        }
+        if (playerId == 2)
+        {
+            transform.position = duelManager.Player2TransformStart.position;
+            transform.localScale = duelManager.Player2TransformStart.localScale;
+        }
         hitboxController.StartCheckingCollision();
         dejaEnable =false;
         moveInput = Vector2.zero;
     }
-
-            public void Slash0(InputAction.CallbackContext context)
+    public void Slash0(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (duelManager.phase == "Go")
         {
-            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+            if (context.performed)
             {
-                dejaEnable = true;
-                animatorController.PlayAnimations("Slash0");
-            }
-            else
-            {
-                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[1]) && !dejaEnable)
+                if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
                 {
                     dejaEnable = true;
-                    animatorController.PlayAnimations("Cancel");
                     animatorController.PlayAnimations("Slash0");
+                }
+                else
+                {
+                    if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[1]) && !dejaEnable)
+                    {
+                        dejaEnable = true;
+                        animatorController.PlayAnimations("Cancel");
+                        animatorController.PlayAnimations("Slash0");
+                    }
                 }
             }
         }
     }
     public void Slash1(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (duelManager.phase == "Go")
         {
-            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+            if (context.performed)
             {
-                dejaEnable = true;
-                animatorController.PlayAnimations("Slash1");
-            }
-            else
-            {
-                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[2]) && !dejaEnable)
+                if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
                 {
                     dejaEnable = true;
-                    animatorController.PlayAnimations("Cancel");
                     animatorController.PlayAnimations("Slash1");
+                }
+                else
+                {
+                    if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[2]) && !dejaEnable)
+                    {
+                        dejaEnable = true;
+                        animatorController.PlayAnimations("Cancel");
+                        animatorController.PlayAnimations("Slash1");
+                    }
                 }
             }
         }
     }
     public void Slash2(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (duelManager.phase == "Go")
         {
-            if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+            if (context.performed)
             {
-                dejaEnable = true;
-                animatorController.PlayAnimations("Slash2");
-            }
-            else
-            {
-                if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[3]) && !dejaEnable)
+                if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
                 {
                     dejaEnable = true;
-                    animatorController.PlayAnimations("Cancel");
                     animatorController.PlayAnimations("Slash2");
+                }
+                else
+                {
+                    if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[3]) && !dejaEnable)
+                    {
+                        dejaEnable = true;
+                        animatorController.PlayAnimations("Cancel");
+                        animatorController.PlayAnimations("Slash2");
+                    }
                 }
             }
         }
     }
     public void Dash(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (duelManager.phase == "Go")
         {
-            if (moveInput.x < 0)
+            if (context.performed)
             {
-                if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
+                if (moveInput.x*transform.localScale.x < 0)
                 {
-                    dejaEnable = true;
-                    animatorController.PlayAnimations("BackDash");
-                }
-                else
-                {
-                    if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[5]) && !dejaEnable)
+                    if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
                     {
                         dejaEnable = true;
-                        animatorController.PlayAnimations("Cancel");
                         animatorController.PlayAnimations("BackDash");
                     }
-                }
-            }
-            else
-            {
-                if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
-                {
-                    dejaEnable = true;
-                    animatorController.PlayAnimations("FrontDash");
+                    else
+                    {
+                        if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[5]) && !dejaEnable)
+                        {
+                            dejaEnable = true;
+                            animatorController.PlayAnimations("Cancel");
+                            animatorController.PlayAnimations("BackDash");
+                        }
+                    }
                 }
                 else
                 {
-                    if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[4]) && !dejaEnable)
+                    if ((animatorController.GetCurrentAnimationName() == "Idle") && !dejaEnable)
                     {
                         dejaEnable = true;
-                        animatorController.PlayAnimations("Cancel");
                         animatorController.PlayAnimations("FrontDash");
+                    }
+                    else
+                    {
+                        if (animatorController.PeutCanceler(playerScriptableObject.listSkillScript[4]) && !dejaEnable)
+                        {
+                            dejaEnable = true;
+                            animatorController.PlayAnimations("Cancel");
+                            animatorController.PlayAnimations("FrontDash");
+                        }
                     }
                 }
             }
@@ -165,7 +171,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveInput = walkAction.ReadValue<Vector2>();
+        if (duelManager.phase == "Go")
+        {
+            if (playerId == 1)
+            {
+                CameraManager.positionPlayer1 = transform.position;
+            }
+            if (playerId == 2)
+            {
+                CameraManager.positionPlayer2 = transform.position;
+            }
+        }
+            moveInput = walkAction.ReadValue<Vector2>();
         //moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)
         {
@@ -177,6 +194,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Walk(Vector2 moveInput)
     {
-        transform.position += new Vector3(moveInput.x * playerScriptableObject.speed, 0, 0) * Time.deltaTime;
+        if (duelManager.phase == "Go")
+        {
+            transform.position += new Vector3(moveInput.x * playerScriptableObject.speed, 0, 0) * Time.deltaTime;
+        }
     }
 }

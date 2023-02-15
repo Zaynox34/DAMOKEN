@@ -13,6 +13,10 @@ public class DuelManager : MonoBehaviour
     public Transform Player1TransformStart;
     public Transform Player2TransformStart;
     public GameObject CameraObject;
+    public GameObject player1;
+    public GameObject player2;
+    public PlayerController player1Controller;
+    public PlayerController player2Controller;
     private void Awake()
     {
         PlayerManager = PlayerManagerGameObject.GetComponent<PlayerManager>();
@@ -45,6 +49,17 @@ public class DuelManager : MonoBehaviour
         if (PlayerManager.playerInputManager.playerCount >= 2)
         {
             chronos += Time.deltaTime;
+        }
+    }
+    public GameObject QuiEstMonEnemy(GameObject g)
+    {
+        if(g.GetComponent<PlayerController>().playerId==1)
+        {
+            return player2;
+        }
+        else
+        {
+            return player1;
         }
     }
     private void Update()

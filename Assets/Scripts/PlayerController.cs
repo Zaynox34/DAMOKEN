@@ -171,15 +171,29 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (((CameraGameObject.transform.position - animatorController.character.transform.position).x /transform.localScale.x)< 0)
+        {
+            Debug.Log((CameraGameObject.transform.position - transform.position).x / transform.localScale.x);
+            if (animatorController.GetCurrentAnimationName() == "Idle")
+            {
+                Debug.Log("ai");
+                transform.position = new Vector3(animatorController.character.transform.position.x,transform.position.y,transform.position.z);
+                animatorController.character.transform.localPosition = new Vector3(0, animatorController.character.transform.localPosition.y, animatorController.character.transform.localPosition.z);
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            }
+            
+            
+        }
+
         if (duelManager.phase == "Go")
         {
             if (playerId == 1)
             {
-                CameraManager.positionPlayer1 = transform.position;
+                CameraManager.positionPlayer1 = animatorController.character.transform.position;
             }
             if (playerId == 2)
             {
-                CameraManager.positionPlayer2 = transform.position;
+                CameraManager.positionPlayer2 = animatorController.character.transform.position;
             }
         }
             moveInput = walkAction.ReadValue<Vector2>();

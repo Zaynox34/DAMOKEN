@@ -81,6 +81,7 @@ public class HitboxManager : MonoBehaviour
         if(_state==ColliderState.Colliding)
         {
             Debug.Log("Kill");
+            playerController.duelManager.Attack(player);
         }
         collidersCount = 0;
     }

@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 7729389568410935486}
   - component: {fileID: 7729389568410935480}
   - component: {fileID: 7729389568410935481}
+  - component: {fileID: 2594883603840004213}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player1
@@ -1149,6 +1150,19 @@ MonoBehaviour:
   hitboxPrefab: {fileID: 1452022634609169470, guid: c9acb639f395df648810732e7bb8878e, type: 3}
   hitBoxDisplay: {fileID: 7729389568096183579}
   colideBoxToCheck: []
+--- !u!114 &2594883603840004213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729389568410935485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d516b802354b146809bba6ea20f7f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoint: 100
 --- !u!1 &7729389568572309384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1211,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7729389568572309384}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

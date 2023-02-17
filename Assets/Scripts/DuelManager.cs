@@ -25,6 +25,20 @@ public class DuelManager : MonoBehaviour
     {
         chronos = 0;
     }
+    public void Attack(GameObject player)
+    {
+        if(player==player1)
+        {
+            player2.GetComponent<LifeManager>().Hurt(100);
+            //Debug.Log("Player 2 Hurt");
+        }
+        else
+        {
+            player1.GetComponent<LifeManager>().Hurt(100);
+            //Debug.Log("Player 1 Hurt");
+        }
+        CameraObject.GetComponent<CameraManager>().shakeNow = true;
+    }
     public void ChronosManager()
     {
         if (chronos == 0)

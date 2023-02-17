@@ -1550,6 +1550,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positionPlayer1: {x: 0, y: 0, z: 0}
   positionPlayer2: {x: 0, y: 0, z: 0}
+  shakeTime: 0.1
+  chronos: 0
+  shakeNow: 0
+  shakeAmplitude: 0.04
+  randomiser: {x: 0, y: 0, z: 0}
+  truePosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1141970098
 GameObject:
   m_ObjectHideFlags: 0

@@ -212,7 +212,6 @@ public class PlayerController : MonoBehaviour
             {
                 if(pushBox.onColidder)
                 {
-                    Debug.Log("ai");
                     if ((duelManager.QuiEstMonEnemy(this.gameObject).GetComponent<AnimatorController>().character.transform.position - 
                         animatorController.character.transform.position).x / moveInput.x >= 0)
                     {

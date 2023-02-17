@@ -1683,6 +1683,10 @@ MonoBehaviour:
   Player1TransformStart: {fileID: 150223336}
   Player2TransformStart: {fileID: 886677090}
   CameraObject: {fileID: 1078924296}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  player1Controller: {fileID: 0}
+  player2Controller: {fileID: 0}
 --- !u!4 &1172738604
 Transform:
   m_ObjectHideFlags: 0

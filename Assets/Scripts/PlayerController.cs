@@ -45,12 +45,14 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if (playerId==1)
         {
             duelManager.player1 = this.gameObject;
             duelManager.player1Controller = this;
             transform.position = duelManager.Player1TransformStart.position;
             transform.localScale = duelManager.Player1TransformStart.localScale;
+            CameraManager.animatorControllerPlayer1 = animatorController;
         }
         if (playerId == 2)
         {
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
             duelManager.player2Controller = this;
             transform.position = duelManager.Player2TransformStart.position;
             transform.localScale = duelManager.Player2TransformStart.localScale;
+            CameraManager.animatorControllerPlayer2 = animatorController;
         }
 
         hitboxController.StartCheckingCollision();
@@ -199,14 +202,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        if (playerId == 1)
-        {
-            CameraManager.positionPlayer1 = animatorController.character.transform.position;
-        }
-        if (playerId == 2)
-        {
-            CameraManager.positionPlayer2 = animatorController.character.transform.position;
-        }
+        
         moveInput = walkAction.ReadValue<Vector2>();
         //moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)

@@ -179,40 +179,43 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (((CameraGameObject.transform.position - animatorController.character.transform.position).x /transform.localScale.x)< 0)
+        if (duelManager.phase == "Go")
+        {
+            Jouer();
+        }
+
+        }
+    public void Jouer()
+    {
+        if (((duelManager.QuiEstMonEnemy(this.gameObject).GetComponent<AnimatorController>().character.transform.position - animatorController.character.transform.position).x / transform.localScale.x) < 0)
         {
             Debug.Log((CameraGameObject.transform.position - transform.position).x / transform.localScale.x);
             if (animatorController.GetCurrentAnimationName() == "Idle")
             {
-                
-                transform.position = new Vector3(animatorController.character.transform.position.x,transform.position.y,transform.position.z);
+
+                transform.position = new Vector3(animatorController.character.transform.position.x, transform.position.y, transform.position.z);
                 animatorController.character.transform.localPosition = new Vector3(0, animatorController.character.transform.localPosition.y, animatorController.character.transform.localPosition.z);
                 transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             }
-            
-            
-        }
 
-        if (duelManager.phase == "Go")
-        {
-            if (playerId == 1)
-            {
-                CameraManager.positionPlayer1 = animatorController.character.transform.position;
-            }
-            if (playerId == 2)
-            {
-                CameraManager.positionPlayer2 = animatorController.character.transform.position;
-            }
         }
-            moveInput = walkAction.ReadValue<Vector2>();
+        if (playerId == 1)
+        {
+            CameraManager.positionPlayer1 = animatorController.character.transform.position;
+        }
+        if (playerId == 2)
+        {
+            CameraManager.positionPlayer2 = animatorController.character.transform.position;
+        }
+        moveInput = walkAction.ReadValue<Vector2>();
         //moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
         if (moveInput != Vector2.zero)
         {
             if (animatorController.GetCurrentAnimationName() == "Idle")
             {
-                if(pushBox.onColidder)
+                if (pushBox.onColidder)
                 {
-                    if ((duelManager.QuiEstMonEnemy(this.gameObject).GetComponent<AnimatorController>().character.transform.position - 
+                    if ((duelManager.QuiEstMonEnemy(this.gameObject).GetComponent<AnimatorController>().character.transform.position -
                         animatorController.character.transform.position).x / moveInput.x >= 0)
                     {
                         duelManager.QuiEstMonEnemy(this.gameObject).transform.position += new Vector3(moveInput.x * playerScriptableObject.speed, 0, 0) * Time.deltaTime;
@@ -220,7 +223,7 @@ public class PlayerController : MonoBehaviour
                 }
                 Walk(moveInput);
             }
-        }
+        }    
     }
     public void Walk(Vector2 moveInput)
     {

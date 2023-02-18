@@ -22,13 +22,14 @@ public class CameraManager : MonoBehaviour
     }
     public void Shake()
     {
-        randomiser=new Vector3(((float)Random.Range(-10, 10))/10, ((float)Random.Range(-10, 10)) / 10, 0)* shakeAmplitude;
+        randomiser=new Vector3((Random.Range(-1f, 1f)), (Random.Range(-1f, 1f)), 0)* shakeAmplitude;
         transform.position += randomiser;
     }
     // Update is called once per frame
     void Update()
     {
-        truePosition = new Vector3((positionPlayer1.x + positionPlayer2.x) / 2, truePosition.y, truePosition.z);
+        /*
+        truePosition = new Vector3((positionPlayer1.x + positionPlayer2.x) / 2, truePosition.y, truePosition.z);*/
         transform.position = truePosition;
         if(chronos>=shakeTime)
         {

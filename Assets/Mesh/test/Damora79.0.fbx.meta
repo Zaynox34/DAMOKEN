@@ -8,97 +8,97 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: EYES_BLACk
-    second: {fileID: 2100000, guid: 47879444ab4a783459d999990564c70b, type: 2}
+    second: {fileID: 2100000, guid: 064cf01240c462e45b8476ed60ebeea2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: EYES_GRAY
-    second: {fileID: 2100000, guid: 95bcda543efb26a4080053b2284c1873, type: 2}
+    second: {fileID: 2100000, guid: 3453e2e25379f6f488e1a8eccdeced31, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: EYES_RED
-    second: {fileID: 2100000, guid: 6b58336e70b481a46a75e7b1b69cc413, type: 2}
+    second: {fileID: 2100000, guid: bb3941d938d7dc143ac6ca3546c0fe2e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: EYES_WHITE
-    second: {fileID: 2100000, guid: f8e7d50f3eabcca44bd2754e3ac9a561, type: 2}
+    second: {fileID: 2100000, guid: ea63728bb254aaf42ac89faa8318a6f7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HAIR_0
-    second: {fileID: 2100000, guid: 2f7a499bccab10744b6aa6258793f5ab, type: 2}
+    second: {fileID: 2100000, guid: 22752e15044fd894d8fee3c5805686c0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HAIR_1
-    second: {fileID: 2100000, guid: 4775fe5058eb3bc47ab73767c3112d5d, type: 2}
+    second: {fileID: 2100000, guid: cdb8fbfa5a03e38418e838ab75e64115, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HAIR_2
-    second: {fileID: 2100000, guid: 60c7fe76430dcf342ae8fbd6c545464d, type: 2}
+    second: {fileID: 2100000, guid: fdc6684f51d3dd84cae31164af5c2ea2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: HAIR_3
-    second: {fileID: 2100000, guid: 7da0504504b812346b4dfa8cffa3dd4a, type: 2}
+    second: {fileID: 2100000, guid: 152c8ec6a39d31d45928410f56541c9d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: IRON_0
-    second: {fileID: 2100000, guid: d8634d86946f6ab41aa3c32336294bcd, type: 2}
+    second: {fileID: 2100000, guid: 2ebb637073a4d944ba50a573171f3f6b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: IRON_1
-    second: {fileID: 2100000, guid: 5d73978990edd72468fc823cb5c0a7a5, type: 2}
+    second: {fileID: 2100000, guid: 1df76a3faed56f345b29e55a55d20475, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: LEATHER
-    second: {fileID: 2100000, guid: b0921219ef1cda64d99c325595aa07b2, type: 2}
+    second: {fileID: 2100000, guid: f9a98264ca59122498b33ddbdba91ec5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MOUTH
-    second: {fileID: 2100000, guid: 3ab3796bebe136e49bd330b46be36f9f, type: 2}
+    second: {fileID: 2100000, guid: 0f7ed0035bf58044689cf01197358631, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: OUTFIT_0
-    second: {fileID: 2100000, guid: f05db658ef944534398b63aee8f11efb, type: 2}
+    second: {fileID: 2100000, guid: 3ef8820ec1e8d054ca3208590eb59f33, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: OUTFIT_1
-    second: {fileID: 2100000, guid: 37de3bcaaf83e6e40ba49666a64f921c, type: 2}
+    second: {fileID: 2100000, guid: fb3596be410dd0c48ab9cc38c20c96b8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: OUTFIT_2
-    second: {fileID: 2100000, guid: 0e121fd1eb8816e478ca340bd8232c13, type: 2}
+    second: {fileID: 2100000, guid: 609d8845446b86d41a291d335cb6ce3a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: SKIN._0
-    second: {fileID: 2100000, guid: d14a314b03baf124c9a23952fc12fb93, type: 2}
+    second: {fileID: 2100000, guid: 0ab3b855aa03aa541889d89fe21207e4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: SKIN_1
-    second: {fileID: 2100000, guid: e0ce0a52349f6e74baf153d08d9944a4, type: 2}
+    second: {fileID: 2100000, guid: 188c3af9e1b5ae940b0b3c95038cc7f6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: TEETH
-    second: {fileID: 2100000, guid: 5c3c5360cebc17a40b5386f2e89ac530, type: 2}
+    second: {fileID: 2100000, guid: 1675b0beec7ede8448efba68e3dfdc10, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: TOUNGUE
-    second: {fileID: 2100000, guid: 4e5f6398f0e545b44ad96ab22a79b6ef, type: 2}
+    second: {fileID: 2100000, guid: f05914c59fe2b914bb8fd7b6ae2d4877, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

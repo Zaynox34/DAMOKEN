@@ -101,6 +101,6 @@ Shader "Unlit/ddd"
 			}
 			ENDCG
 		}
-		UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
+		//UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
 	}
 }

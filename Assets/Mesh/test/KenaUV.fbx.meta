@@ -3,7 +3,97 @@ guid: d9fa5eb7797d66f4e8e03fe037259dce
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BOUCHE INTERIOR
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CHEVEUX_0
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CHEVEUX_1
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CUIR
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DENT
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LANGUE
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: METAL
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: METAL_SHADOW
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PRINCIPAL_0
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PRINCIPAL_0.001
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SECONDARY
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SECONDARY.001
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SKIN
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SKIN.001
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin2ShaDOW.001
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TERSIARY
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TERSIARY.001
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WHITE EYES
+    second: {fileID: 2100000, guid: 3cf7d42d29cae5f45b6a9c034c82cb92, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

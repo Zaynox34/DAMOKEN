@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: 5d99a1d234c5db74eb3db8777d48dbc8
+ModelImporter:
+  serializedVersion: 21100
+  internalIDToNameTable:
+  - first:
+      74: 7647602666115420092
+    second: SWORD.001|00_KENA_MEsh_Keying
+  - first:
+      74: 529720601312684906
+    second: SWORD.001|01_SWORD-IDLE
+  - first:
+      74: 149512771348267997
+    second: SWORD.001|01_SWORD-IDLE.001
+  - first:
+      74: -621513416526500479
+    second: SWORD.001|01_SWORD-WALK
+  - first:
+      74: 7022898348550532256
+    second: SWORD.001|01_SWORD-WALK2
+  - first:
+      74: 2070365672056412909
+    second: SWORD.001|04_SWORD-SLASH2
+  - first:
+      74: 4407155719902691368
+    second: SWORD.001|05_SWORD_SLASH_0
+  - first:
+      74: 3343944925471632621
+    second: Armature|00_KEYING-SET
+  - first:
+      74: 3011419693280890849
+    second: Armature|01_IDLE
+  - first:
+      74: -1646507600100512375
+    second: Armature|01_SWORD-IDLE
+  - first:
+      74: -42348651350086312
+    second: Armature|01_SWORD-IDLE.001
+  - first:
+      74: 8202191200491610788
+    second: Armature|01_SWORD-WALK
+  - first:
+      74: 7867127624825779005
+    second: Armature|01_SWORD-WALK2
+  - first:
+      74: -4437358031705080760
+    second: Armature|03_WALK
+  - first:
+      74: 143082042334019784
+    second: Armature|03_WALK.2
+  - first:
+      74: -2961731024918915442
+    second: Armature|04_SLASH2
+  - first:
+      74: 6534193892632116771
+    second: Armature|04_SWORD-SLASH2
+  - first:
+      74: -3322464759346815953
+    second: Armature|05_SLASH_0
+  - first:
+      74: -6339853190065947612
+    second: Armature|05_SWORD_SLASH_0
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 1
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

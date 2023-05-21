@@ -143,4 +143,20 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetTrigger(name);
     }
+    public void ResetAnimation(string name)
+    {
+        animator.ResetTrigger(name);
+    }
+    public void PlayAnimation2(string name,bool val)
+    {
+        animator.SetBool(name, val);
+    }
+    public void Pause()
+    {
+        animator.speed = 0.5f;
+    }
+    public void DePause()
+    {
+        animator.speed = 1f;
+    }
 }

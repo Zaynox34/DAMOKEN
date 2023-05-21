@@ -21,13 +21,20 @@ public class PlayerController : MonoBehaviour
     private AnimatorController animatorController;
     public GameObject pushBoxGameObject;
     public PushBox pushBox;
+    public List<Material> KenaMaterial;
+    public List<Material> KenaSwordMaterial;
+    public Material[] KenaMaterial2;
+    public Material[] KenaSwordMaterial2;
+    public GameObject sword;
+    public GameObject character;
 
     public int playerId;
     public Vector2 moveInput;
     public bool dejaEnable; //bolean qui evite le double input et oblige un decalage
+    public bool ChuiToucher;
     private void Awake()
     {
-        
+        ChuiToucher = false;
         playerManagerGameObject = GameObject.Find("PlayerManager");
         transform.parent = playerManagerGameObject.transform;
         playerManager = playerManagerGameObject.GetComponent<PlayerManager>();
@@ -40,11 +47,28 @@ public class PlayerController : MonoBehaviour
         CameraGameObject = duelManager.CameraObject;
         CameraManager = CameraGameObject.GetComponent<CameraManager>();
         pushBox = pushBoxGameObject.GetComponent<PushBox>();
+        
 
-    }
+        }
     // Start is called before the first frame update
     void Start()
     {
+        if (playerId == 2)
+        {
+            var mats = new Material[sword.GetComponent<Renderer>().materials.Length];
+            for (int i = 0; i < KenaSwordMaterial.Count; i++)
+            {
+                mats[i] = KenaSwordMaterial[i];
+            }
+            sword.GetComponent<Renderer>().materials = mats;
+            var mats2 = new Material[character.GetComponent<Renderer>().materials.Length];
+            for (int i = 0; i < KenaMaterial.Count; i++)
+            {
+                mats2[i] = KenaMaterial[i];
+            }
+            character.GetComponent<Renderer>().materials = mats2;
+        }
+
 
         if (playerId==1)
         {
@@ -185,11 +209,25 @@ public class PlayerController : MonoBehaviour
         if (duelManager.phase == "Go")
         {
             Jouer();
+            
         }
 
         }
     public void Jouer()
     {
+        
+        if (CameraManager.chronos!=-1 && ChuiToucher )
+        {
+            animatorController.PlayAnimations("Shake");
+            
+
+        }
+        if (CameraManager.chronos == -1)
+        {
+            animatorController.DePause();
+            ChuiToucher = false;
+            animatorController.PlayAnimations("DeShake");
+        }
         if (((duelManager.QuiEstMonEnemy(this.gameObject).GetComponent<AnimatorController>().character.transform.position - animatorController.character.transform.position).x / transform.localScale.x) < 0)
         {
             Debug.Log((CameraGameObject.transform.position - transform.position).x / transform.localScale.x);
@@ -205,6 +243,10 @@ public class PlayerController : MonoBehaviour
         
         moveInput = walkAction.ReadValue<Vector2>();
         //moveInput = playerScriptableObject.playerControls.War.Walk.ReadValue<Vector2>();
+        if(moveInput== Vector2.zero)
+        {
+            animatorController.PlayAnimations("Idle");
+        }
         if (moveInput != Vector2.zero)
         {
             if (animatorController.GetCurrentAnimationName() == "Idle")
@@ -225,7 +267,16 @@ public class PlayerController : MonoBehaviour
     {
         if (duelManager.phase == "Go")
         {
+            
             transform.position += new Vector3(moveInput.x * playerScriptableObject.speed, 0, 0) * Time.deltaTime;
+            if (moveInput.x * transform.localScale.x > 0)
+            {
+                animatorController.PlayAnimations("FrontWalk");
+            }
+            if (moveInput.x * transform.localScale.x < 0)
+            {
+                animatorController.PlayAnimations("BackWalk");
+            }
         }
     }
 }

@@ -36,6 +36,8 @@ public class DuelManager : MonoBehaviour
     {
         if(player==player1)
         {
+            
+            player2.GetComponent<PlayerController>().ChuiToucher = true;
             player2.GetComponent<LifeManager>().Hurt(100);
             if(player2.GetComponent<LifeManager>().dead)
             {
@@ -43,15 +45,19 @@ public class DuelManager : MonoBehaviour
                 player2.GetComponent<LifeManager>().Recovery(100); ;
             }
             //Debug.Log("Player 2 Hurt");
+            player1.GetComponent<AnimatorController>().Pause();
         }
         else
         {
+            
+            player1.GetComponent<PlayerController>().ChuiToucher = true;
             player1.GetComponent<LifeManager>().Hurt(100);
             if (player1.GetComponent<LifeManager>().dead)
             {
                 scoreP2Manager.score++;
                 player1.GetComponent<LifeManager>().Recovery(100); ;
             }
+            player2.GetComponent<AnimatorController>().Pause();
             //Debug.Log("Player 1 Hurt");
         }
         CameraObject.GetComponent<CameraManager>().shakeNow = true;
